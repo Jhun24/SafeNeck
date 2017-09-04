@@ -3,7 +3,7 @@
  */
 module.exports = auth;
 
-function auth(app , randomstring , userModel){
+function auth(app , randomstring , userModel , NaverStrategy , passport){
     "use strict";
 
     app.post('/auth/login',(req,res)=>{
@@ -85,6 +85,22 @@ function auth(app , randomstring , userModel){
                 });
             }
         });
-
     });
+
+    app.get('/auth/naver',
+        passport.authenticate('naver', null), function(req, res) { // @todo Additional handler is necessary. Remove?
+            console.log('/auth/naver failed, stopped');
+        });
+
+// creates an account if no account of the new user
+    app.get('/auth/naver/callback',
+        passport.authenticate('naver', {
+            failureRedirect: '#!/auth/login'
+        }), function(req, res) {
+            res.redirect('/');
+        });
+    //
+    // app.post('/auth/naver_login',(req,res)=>{
+    //
+    // });
 }

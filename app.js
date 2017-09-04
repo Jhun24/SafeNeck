@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
 var randomstring = require('randomstring');
+var NaverStrategy = require('passport-naver').Strategy;
+var passport = require('passport');
 
 var app = express();
 
@@ -23,6 +25,32 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+passport.serializeUser(function(user, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+    done(null, obj);
+});
+
+passport.use(new NaverStrategy({
+    clientID: "4IXyyClPOOuvw5cYcUzv",
+    clientSecret: "3i3qZjzzgX",
+    callbackURL: "http://localhost:3000/auth/naver/callback"
+
+}, function(accessToken, refreshToken, profile, done) {
+    process.nextTick(function () {
+        // user = {
+        //     name: profile.displayName,
+        //     email: profile.emails[0].value,
+        //     username: profile.displayName,
+        //     provider: 'naver',
+        //     naver: profile._json
+        // };
+        return done(null, profile);
+    });
+}));
 
 mongoose.connect('mongodb://localhost:27017/no') ;
 var db = mongoose.connection;
@@ -43,7 +71,7 @@ var user = mongoose.Schema({
 
 var userModel = mongoose.model('userModel',user);
 
-require('./routes/auth')(app,randomstring,userModel);
+require('./routes/auth')(app,randomstring,userModel,NaverStrategy,passport);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
