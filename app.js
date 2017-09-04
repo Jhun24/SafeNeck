@@ -34,7 +34,7 @@ db.once('open', function callback () {
 var user = mongoose.Schema({
     name:String,
     id:String,
-    ps:String,
+    password:String,
     token:String,
     age:String,
     sex:String,
@@ -43,7 +43,7 @@ var user = mongoose.Schema({
 
 var userModel = mongoose.model('userModel',user);
 
-require('./routes/auth')(app,randomstring);
+require('./routes/auth')(app,randomstring,userModel);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
