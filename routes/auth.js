@@ -3,7 +3,6 @@
  */
 module.exports = auth;
 
-function auth(app){
+function auth(app , randomstring){
     "use strict";
-
 }
