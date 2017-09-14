@@ -69,9 +69,26 @@ var user = mongoose.Schema({
     work:String
 });
 
+var alarm = mongoose.Schema({
+    token:String,
+    todayAlarm:String,
+    monthAlarm:String
+});
+
+var setting = mongoose.Schema({
+    token:String,
+    reportTime:String,
+    dailyAward:String,
+    weeklyAward:String
+});
+
 var userModel = mongoose.model('userModel',user);
+var alarmModel = mongoose.model('alarmModel',alarm);
+var settingModel = mongoose.model('settingModel',setting);
 
 require('./routes/auth')(app,randomstring,userModel,NaverStrategy,passport);
+require('./routes/alarm')(app,alarmModel,userModel)
+require('./routes/setting')(app,userModel,settingModel);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
