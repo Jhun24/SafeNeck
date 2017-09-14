@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var randomstring = require('randomstring');
 var NaverStrategy = require('passport-naver').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 var passport = require('passport');
 
 var app = express();
@@ -51,6 +52,18 @@ passport.use(new NaverStrategy({
         return done(null, profile);
     });
 }));
+
+passport.use(new FacebookStrategy({
+        clientID: "265369863980600",
+        clientSecret: "32f418e9701b1ac4c6f819e50e7d63fe",
+        callbackURL: "http://localhost:8080/auth/facebook/callback"
+    },
+    function(accessToken, refreshToken, profile, cb) {
+        User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+            return cb(err, user);
+        });
+    }
+));
 
 mongoose.connect('mongodb://localhost:27017/no') ;
 var db = mongoose.connection;
