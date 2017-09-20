@@ -27,7 +27,7 @@ $(".btn-register").click(function(){
             url:"/auth/register",
             success:function (data) {
                 if(data["status"] == 200){
-
+                    location.href="/setting"
                 }
                 else if(data["status"] == 403){
                     alert("이미 존재하는 아이디입니다");

@@ -91,7 +91,8 @@ function auth(app , randomstring , userModel  , passport ,session){
 
     app.get("/auth/getToken",(req,res)=>{
         var token = req.session.token;
-        if(token == ""){
+        console.log(token);
+        if(token == undefined){
             res.send({
                 "status":404,
                 "message":"token undefinded"

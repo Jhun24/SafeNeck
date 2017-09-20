@@ -135,12 +135,6 @@ body{
     height:22px;
 }
 
-.header > .header-box > .auth-box{
-    width:20%;
-    height:100%;
-
-    .flex-align-between;
-}
 
 .header > .header-box > .auth-box > .btn{
     width:45%;
@@ -164,14 +158,6 @@ body{
     .flex-center;
 }
 
-.content > .content-box{
-    width:54%;
-    height:60%;
-
-    box-shadow:2px 2px 5px 5px rgb(234,234,234);
-    border-radius:20px;
-
-}
 
 .content > .content-box > .content-box-header{
     width:100%;
@@ -198,14 +184,193 @@ body{
     font-weight:400;
 }
 
-.content > .content-box > .content-box-header > .content-box-header-content > .btn{
-    width:20%;
-    height:60%;
+.content > .content-box > .content-box-content{
+    width:100%;
+    height:76%;
+}
+
+.content > .content-box > .content-box-content > .content-text > h4{
+    font-size:22px;
+    font-weight:400;
+    color:rgb(106,106,106);
+    line-height: 50px;
+    margin-top:20px;
+}
+
+.content > .content-box > .content-box-content > .content-btn > .btn{
+    width:40%;
+    height:80%;
 
     .flex-center;
+    border-radius:100px;
 
-    color:rgb(66,82,88);
+    box-shadow:5px 5px rgb(194,194,194);
+}
+
+.content > .content-box > .content-box-content > .content-btn > .unclick{
+    border:2px solid rgb(39,183,159);
+    color:rgb(39,183,159);
+}
+
+.content > .content-box > .content-box-content > .content-btn > .click{
+    color:#fff;
+    background-color:rgb(39,183,159);
+}
+
+.content > .content-box > .content-box-content > .content-list > .content-list-box{
+    width:80%;
+    height:50%;
+
+    margin:auto;
+
+    .flex-align-between;
+}
+
+.content > .content-box > .content-box-content > .content-list > .content-list-box > p{
+    color:rgb(39,183,159);
+    font-size:14px;
+}
+
+.content > .content-box > .content-box-content > .content-list > .content-list-box > select{
+    color:rgb(139,139,139);
+    border:none;
+    outline:none;
+
     background-color:#fff;
 
-    border-radius: 30px;
+    width:30%;
+}
+
+@media (max-width:639px){
+    .content > .content-box{
+        width:90%;
+        height:60%;
+
+        box-shadow:2px 2px 5px 5px rgb(234,234,234);
+        border-radius:20px;
+
+    }
+
+    .content > .content-box > .content-box-content > .content-text > p{
+        font-size:16px;
+        color:rgb(204,204,204);
+
+        display:none;
+    }
+
+    .content > .content-box > .content-box-content > .content-btn{
+        width:80%;
+        height:15%;
+
+        .flex-align-between;
+
+        margin:auto;
+        margin-top:20px;
+    }
+
+    .content > .content-box > .content-box-content > .content-list{
+        width:80%;
+        height:12%;
+
+        border:2px solid rgb(39,183,159);
+        border-radius:100px;
+
+        margin:auto;
+        margin-top:20px;
+
+        .flex-center;
+
+        box-shadow:5px 5px rgb(194,194,194);
+    }
+
+    .content > .content-box > .content-box-content > .content-text{
+        width:75%;
+        margin:auto;
+    }
+
+    .content > .content-box > .content-box-header > .content-box-header-content > .btn{
+        width:40%;
+        height:60%;
+
+        .flex-center;
+
+        color:rgb(66,82,88);
+        background-color:#fff;
+
+        border-radius: 30px;
+    }
+
+    .header > .header-box > .auth-box{
+        width:40%;
+        height:100%;
+
+        .flex-align-between;
+    }
+}
+
+@media (min-width:640px){
+    .content > .content-box{
+        width:54%;
+        height:60%;
+
+        box-shadow:2px 2px 5px 5px rgb(234,234,234);
+        border-radius:20px;
+
+    }
+
+    .content > .content-box > .content-box-content > .content-text > p{
+        font-size:16px;
+        color:rgb(204,204,204);
+
+        display:block;
+    }
+
+    .content > .content-box > .content-box-content > .content-btn{
+        width:50%;
+        height:15%;
+
+        .flex-align-between;
+
+        margin:auto;
+        margin-top:20px;
+    }
+
+    .content > .content-box > .content-box-content > .content-list{
+        width:50%;
+        height:12%;
+
+        border:2px solid rgb(39,183,159);
+        border-radius:100px;
+
+        margin:auto;
+        margin-top:20px;
+
+        .flex-center;
+
+        box-shadow:5px 5px rgb(194,194,194);
+    }
+
+    .content > .content-box > .content-box-content > .content-text{
+        width:60%;
+        margin:auto;
+    }
+
+    .content > .content-box > .content-box-header > .content-box-header-content > .btn{
+        width:20%;
+        height:60%;
+
+        .flex-center;
+
+        color:rgb(66,82,88);
+        background-color:#fff;
+
+        border-radius: 30px;
+    }
+
+    .header > .header-box > .auth-box{
+        width:20%;
+        height:100%;
+
+        .flex-align-between;
+    }
 }
