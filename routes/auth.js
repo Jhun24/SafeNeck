@@ -3,7 +3,7 @@
  */
 module.exports = auth;
 
-function auth(app , randomstring , userModel , NaverStrategy , passport){
+function auth(app , randomstring , userModel  , passport ,session){
     "use strict";
 
     app.post('/auth/login',(req,res)=>{
@@ -20,6 +20,7 @@ function auth(app , randomstring , userModel , NaverStrategy , passport){
                 });
             }
             else{
+                req.session.token = model[0]["token"];
                 res.send({
                     "status":200,
                     "data":model[0]
@@ -46,9 +47,10 @@ function auth(app , randomstring , userModel , NaverStrategy , passport){
 
                 saveUserModel.save((err,m)=>{
                     if(err) throw err;
+                    req.session.token = token;
                     res.send({
                         "status":200,
-                        "data":m[0]
+                        "data":m
                     });
                 });
             }
@@ -87,6 +89,22 @@ function auth(app , randomstring , userModel , NaverStrategy , passport){
         });
     });
 
+    app.get("/auth/getToken",(req,res)=>{
+        var token = req.session.token;
+        if(token == ""){
+            res.send({
+                "status":404,
+                "message":"token undefinded"
+            });
+        }
+        else{
+            res.send({
+                "status":200,
+                "token":token
+            });
+        }
+    });
+
     app.get('/auth/naver',
         passport.authenticate('naver', null), function(req, res) { // @todo Additional handler is necessary. Remove?
             console.log('/auth/naver failed, stopped');
@@ -104,6 +122,15 @@ function auth(app , randomstring , userModel , NaverStrategy , passport){
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', { failureRedirect: '/login' }),
+        function(req, res) {
+            // Successful authentication, redirect home.
+            res.redirect('/');
+    });
+
+    app.get('/auth/google', passport.authenticate('google'));
+
+    app.get('/auth/google/return',
+        passport.authenticate('google', { failureRedirect: '/login' }),
         function(req, res) {
             // Successful authentication, redirect home.
             res.redirect('/');

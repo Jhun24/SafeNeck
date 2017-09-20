@@ -1,0 +1,516 @@
+.flex(){
+  display:flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+}
+
+.flex-center(){
+  display:flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+
+  align-items:center;
+  -ms-flex-align:center;
+  -webkit-align-items:center;
+
+  -ms-flex-pack:center;
+  justify-content:center;
+  -webkit-justify-content:center;
+}
+
+.flex-align-center() {
+  display: flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+
+  align-items: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+}
+
+.flex-align-end() {
+  display:flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+
+  align-items:center;
+  -ms-flex-align:center;
+  -webkit-align-items:center;
+
+  -ms-flex-pack:end;
+  justify-content:flex-end;
+  -webkit-justify-content:flex-end;
+}
+
+.flex-align-between() {
+  display:flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+
+  align-items:center;
+  -ms-flex-align:center;
+  -webkit-align-items:center;
+
+  -ms-flex-pack:justify;
+  justify-content:space-between;
+  -webkit-justify-content:space-between;
+}
+
+.flex-align-start() {
+  display:flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+
+  align-items:center;
+  -ms-flex-align:center;
+  -webkit-align-items:center;
+
+  -ms-flex-pack:start;
+  justify-content:start;
+  -webkit-justify-content:flex-start;
+}
+
+.flex-align-around() {
+  display:flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+
+  align-items:center;
+  -ms-flex-align:center;
+  -webkit-align-items:center;
+
+  -ms-flex-pack:justify;
+  justify-content:space-around;
+  -webkit-justify-content:space-around;
+}
+
+.flex-bottom-around() {
+  display:flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+
+  align-items:flex-end;
+  -ms-flex-align:end;
+  -webkit-align-items:flex-end;
+
+  -ms-flex-pack:justify;
+  justify-content:space-around;
+  -webkit-justify-content:space-around;
+}
+
+*{
+  margin:0;
+  font-family: 'Nanum Barun Gothic', sans-serif;
+}
+
+// 86 188 166
+
+body{
+  width:100vw;
+  height:100vh;
+}
+
+.header{
+  width:100%;
+  height:8%;
+
+  background-color:rgb(86,188,166);
+
+  .flex-center;
+}
+
+.header > .header-box{
+  width:90%;
+  height:100%;
+  margin:auto;
+
+  .flex-align-between;
+}
+
+.header > .header-box > .logo{
+  background-image:url('res/ic_logo.png');
+  background-size:cover;
+  width:172.6px;
+  height:22.6px;
+}
+
+.header > .header-box > .list-box{
+  width:36%;
+  height:100%;
+
+  .flex-align-between;
+}
+
+.header > .header-box > .list-box > .btn{
+  width:24%;
+  height:60%;
+
+  -webkit-border-radius:50px;
+  -moz-border-radius:50px;
+  border-radius:50px;
+
+  .flex-center;
+}
+
+.header > .header-box > .list-box > .click{
+  background-color:#fff;
+  color:rgb(86,188,166);
+}
+
+.header > .header-box > .list-box > .unclick{
+  color:#fff;
+}
+
+.content{
+  width:100%;
+  height:92%;
+
+  .flex;
+}
+
+.content > .daily-content{
+  width:70%;
+  height:100%;
+
+  .flex-center;
+
+  background-color:rgb(252,252,252);
+}
+
+.content > .daily-content > .report-box{
+  width:70%;
+  height:80%;
+}
+
+.content > .daily-content > .report-box > .report-top{
+  width:100%;
+  height:45%;
+
+  .flex-align-between;
+}
+
+.content > .daily-content > .report-box > .report-top > .report-content-box{
+  width:46%;
+  height:100%;
+
+  box-shadow:2px 2px 5px 5px rgb(234,234,234);
+
+  border-radius:20px;
+
+  background-color:#fff;
+}
+
+.content > .daily-content > .report-box > .report-top > .report-content-box > .report-header{
+  width:100%;
+  height:32%;
+
+  border-radius:20px 20px 0 0;
+
+  .flex-align-center;
+}
+
+.content > .daily-content > .report-box > .report-top > .report-content-box  > .daily-header{
+  background-color:rgb(86,188,166);
+}
+
+.content > .daily-content > .report-box > .report-top > .report-content-box > .weekly-header{
+  background-color:rgb(62,82,89);
+}
+
+.content > .daily-content > .report-box > .report-top > .report-content-box > .report-header > .text-box{
+  width:80%;
+  height:60%;
+  margin:auto;
+}
+
+.content > .daily-content > .report-box > .report-top > .report-content-box > .report-header > .text-box > h3{
+  color:#fff;
+  font-weight:400;
+  font-size:23px;
+}
+
+.content > .daily-content > .report-box > .report-top > .report-content-box > .report-header > .text-box > p{
+  color:#fff;
+  font-weight:200;
+  font-size:12px;
+
+  margin-top:5px;
+}
+
+.content > .daily-content > .report-box > .report-top > .report-content-box > .report-user-num{
+  width:80%;
+  height:calc(~"48% - 25px");
+  margin:auto;
+  .flex;
+  margin-top:25px;
+}
+
+.content > .daily-content > .report-box > .report-top > .report-content-box > .daily-report-user-num > .daily-user-num{
+  font-weight:400;
+  color:rgb(86,188,166);
+  font-size:80px;
+}
+
+.content > .daily-content > .report-box > .report-top > .report-content-box > .daily-report-user-num > p{
+  font-weight:400;
+  color:rgb(86,188,166);
+  font-size:20px;
+  margin-top:52px;
+}
+
+.content > .daily-content > .report-box > .report-top > .report-content-box > .weekly-report-user-num > .daily-user-num{
+  font-weight:400;
+  color:rgb(62,82,89);
+  font-size:80px;
+}
+
+.content > .daily-content > .report-box > .report-top > .report-content-box > .weekly-report-user-num > p{
+  font-weight:400;
+  color:rgb(62,82,89);
+  font-size:20px;
+  margin-top:52px;
+}
+
+.content > .daily-content > .report-box > .report-top > .report-content-box > .report-explain-text{
+  width:80%;
+  height:20%;
+
+  margin:auto;
+
+  font-size:14px;
+  color:rgb(194,194,194);
+  font-weight:100;
+}
+
+.content > .daily-content > .report-box > .report-top > .report-content-box > .report-explain-text > p{
+  margin-top:-20px;
+  margin-left:8px;
+}
+
+
+.content > .daily-content > .report-box > .report-bottom{
+  width:100%;
+  height:45%;
+
+  margin-top:20px;
+}
+
+.content > .daily-content > .report-box > .report-bottom > .report-bottom-content{
+  width:100%;
+  height:100%;
+
+  .flex;
+
+  background-color:#fff;
+
+  box-shadow:2px 2px 5px 5px rgb(234,234,234);
+  border-radius:20px;
+}
+
+.content > .daily-content > .report-box > .report-bottom > .report-bottom-content > .report-calender{
+  width:40%;
+  height:100%;
+
+  border-radius:20px 0 0 20px;
+}
+
+.content > .daily-content > .report-box > .report-bottom > .report-bottom-content > .report-calender > .calender-control{
+  width:80%;
+  height:20%;
+  margin:auto;
+  margin-top:10px;
+
+  color:rgb(86,188,166);
+
+  .flex-align-between;
+}
+
+.content > .daily-content > .report-box > .report-bottom > .report-bottom-content > .report-calender > .calender-control > p{
+  font-weight:900;
+  cursor:pointer;
+}
+
+.content > .daily-content > .report-box > .report-bottom > .report-bottom-content > .report-calender > .calender-control > h6{
+  font-size:20px;
+  font-weight:300;
+}
+
+.content > .daily-content > .report-box > .report-bottom > .report-bottom-content > .report-calender > .calender-btn{
+  width:70%;
+  height:12%;
+
+  border-radius:50px;
+
+  margin:auto;
+
+  .flex-center;
+  margin-top:20px;
+}
+
+.content > .daily-content > .report-box > .report-bottom > .report-bottom-content > .report-calender > .click{
+  color:white;
+  background-color:rgb(86,188,166);
+}
+
+.content > .daily-content > .report-box > .report-bottom > .report-bottom-content > .report-calender > .unclick{
+  color:rgb(86,188,166);
+  border:2px solid rgb(86,188,166);
+}
+
+.content > .daily-content > .report-box > .report-bottom > .report-bottom-content > .report-graph{
+  width:60%;
+  height:100%;
+
+  border-radius:0px 20px 20px 0px;
+
+  background-color:rgb(62,82,89);
+}
+
+.content > .daily-content > .report-box > .report-bottom > .report-bottom-content > .report-graph > .graph-list{
+  .flex-bottom-around;
+
+  width:80%;
+  height:80%;
+  margin:auto;
+
+  border-bottom:1px solid rgb(86,188,166);
+}
+
+.content > .daily-content > .report-box > .report-bottom > .report-bottom-content > .report-graph > .graph-list > .graph-content{
+  width:10%;
+  height:60%;
+
+  background-color:rgb(86,188,166);
+
+  border-radius:5px 5px 0 0;
+}
+
+
+.content > .daily-content > .report-box > .report-bottom > .report-bottom-content > .report-graph > .graph-text{
+  width:80%;
+  height:14%;
+
+  margin:auto;
+
+  .flex-align-around;
+
+  font-size:10px;
+  font-weight:100;
+
+  color:rgb(86,188,166);
+}
+
+
+.content > .change-content{
+  width:30%;
+  height:100%;
+
+  box-shadow: 0px 0px 15px rgb(234,234,234);
+}
+
+.content > .change-content > h2{
+  text-align:center;
+  font-size:24px;
+  font-weight:500;
+
+  color:rgb(86,188,166);
+
+  margin-top:20px;
+
+  overflow-y:auto;
+}
+
+.content > .change-content > .change-list-box{
+  width:80%;
+  height:20%;
+
+  margin:auto;
+
+  border:2px solid rgb(194,194,194);
+
+  margin-top:20px;
+
+  border-radius:20px;
+}
+
+.content > .change-content > .change-list-box > .change-header {
+  width: 100%;
+  height: 30%;
+
+  background-color: rgb(194, 194, 194);
+
+  border-radius: 15px 15px 0 0;
+
+  .flex-center;
+  font-size:14px;
+}
+
+.content > .change-content > .change-list-box > .change-content{
+  width:100%;
+  height:70%;
+
+  border-radius:0 0 15px 15px;
+
+  .flex-center;
+}
+
+.content > .change-content > .change-list-box > .change-content > p{
+  font-size:24px;
+  font-wieght:300;
+
+  color:rgb(104,104,104);
+
+  margin-left:15px;
+}
+
+.content > .change-content > .change-list-box > .change-content > .good{
+  background-image: url("res/ic_main_good.png");
+  width:45.75px;
+  height:61.3px;
+
+  background-size:cover;
+}
+
+.content > .change-content > .change-list-box > .change-content > .sogood{
+  background-image: url("res/ic_main_sogood.png");
+  width:45.75px;
+  height:61.3px;
+
+  background-size:cover;
+}
+
+.content > .change-content > .change-list-box > .change-content > .sobad{
+  background-image: url("res/ic_main_sobad.png");
+  width:45px;
+  height:61.3px;
+
+  background-size:cover;
+}
+
+.content > .change-content > .change-list-box > .change-content > .normal{
+  background-image: url("res/ic_main_standard.png");
+  width:46.5px;
+  height:61.3px;
+
+  background-size:cover;
+}
+
+.content > .change-content > .change-list-box > .change-content > .bad{
+  background-image: url("res/ic_main_bad.png");
+  width:46.5px;
+  height:61.3px;
+
+  background-size:cover;
+}
+
+.none{
+  display: none;
+}
+
+@media (max-width:639px){
+
+}
+
+@media (min-width:640px){
+
+}

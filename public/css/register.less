@@ -1,0 +1,389 @@
+.flex(){
+  display:flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+}
+
+.flex-center(){
+  display:flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+
+  align-items:center;
+  -ms-flex-align:center;
+  -webkit-align-items:center;
+
+  -ms-flex-pack:center;
+  justify-content:center;
+  -webkit-justify-content:center;
+}
+
+.flex-align-center() {
+  display: flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+
+  align-items: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+}
+
+.flex-align-end() {
+  display:flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+
+  align-items:center;
+  -ms-flex-align:center;
+  -webkit-align-items:center;
+
+  -ms-flex-pack:end;
+  justify-content:flex-end;
+  -webkit-justify-content:flex-end;
+}
+
+.flex-align-between() {
+  display:flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+
+  align-items:center;
+  -ms-flex-align:center;
+  -webkit-align-items:center;
+
+  -ms-flex-pack:justify;
+  justify-content:space-between;
+  -webkit-justify-content:space-between;
+}
+
+.flex-align-start() {
+  display:flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+
+  align-items:center;
+  -ms-flex-align:center;
+  -webkit-align-items:center;
+
+  -ms-flex-pack:start;
+  justify-content:start;
+  -webkit-justify-content:flex-start;
+}
+
+*{
+  margin:0;
+  font-family: 'Nanum Barun Gothic', sans-serif;
+}
+
+// 86 188 166
+
+body{
+  width:100vw;
+  height:100vh;
+}
+
+.header{
+  width:100%;
+  height:8%;
+
+  background-color:rgb(86,188,166);
+
+  .flex-center;
+}
+
+.header > .header-box{
+  width:90%;
+  height:100%;
+  margin:auto;
+
+  .flex-align-between;
+}
+
+.header > .header-box > .logo{
+  background-image:url('res/ic_logo.png');
+  background-size:cover;
+  width:126px;
+  height:22px;
+}
+
+.header > .header-box > .auth-box > .btn{
+  width:45%;
+  height:60%;
+
+  -webkit-border-radius:50px;
+  -moz-border-radius:50px;
+  border-radius:50px;
+
+  .flex-center;
+
+  cursor:pointer;
+}
+
+.header > .header-box > .auth-box > .register{
+  background-color:#fff;
+  color:rgb(86,188,166);
+}
+
+.header > .header-box > .auth-box > .login{
+  color:#fff;
+  border:2px solid #fff;
+}
+
+.content{
+  width:100%;
+  height:92%;
+
+  .flex-center;
+}
+
+.content > .content-box > .content-header{
+  width:100%;
+  height:15%;
+
+  border-radius:40px 40px 0 0;
+  background-color:rgb(86,188,166);
+
+  .flex-align-start;
+}
+
+.content > .content-box > .content-header > p{
+  color:#fff;
+  font-size:30px;
+  font-weight:400;
+  margin-left:30px;
+}
+
+.content > .content-box > .content-content{
+  width:100%;
+  height:85%;
+}
+
+
+
+.content > .content-box > .content-content > .input-box > input{
+  width:90%;
+  height:95%;
+
+  border-radius:50px;
+  border:none;
+  outline:none;
+
+  padding-left:20px;
+  font-size:13px;
+}
+
+.content > .content-box > .content-content > .default-text{
+  .flex-center;
+  width:60%;
+  height:6%;
+  margin:auto;
+  margin-top:15px;
+}
+
+.content > .content-box > .content-content > .default-text > .line{
+  width:100%;
+  border:1px solid rgba(0,0,0,0.3);
+  margin-bottom:1px;
+}
+
+.content > .content-box > .content-content > .default-text > p{
+  font-size:10px;
+  width:100%;
+  color:rgba(0,0,0,0.3);
+  text-align:center;
+}
+
+.content > .content-box > .content-content > .default-list{
+  .flex-align-between;
+  width:60%;
+  height:12%;
+
+  margin:auto;
+  margin-top:10px;
+}
+
+.content > .content-box > .content-content > .default-list > .default-btn{
+  width:30%;
+  height:90%;
+
+  .flex-center;
+
+  border-radius:50px;
+}
+
+.content > .content-box > .content-content > .default-list > .facebook{
+  border:1px solid rgb(86,110,166);
+}
+
+.content > .content-box > .content-content > .default-list > .google{
+  border:1px solid rgb(230,130,118);
+}
+
+.content > .content-box > .content-content > .default-list > .naver{
+  border:1px solid rgb(43,205,15);
+}
+
+.content > .content-box > .content-content > .default-list > .default-btn > .google-img{
+  background-image:url("res/ic_login_google.png");
+  background-size:cover;
+  width:20px;
+  height:13px;
+}
+
+.content > .content-box > .content-content > .default-list > .default-btn > .facebook-img{
+  background-image:url("res/ic_login_fb.png");
+  background-size:cover;
+  width:7px;
+  height:15px;
+}
+
+.content > .content-box > .content-content > .default-list > .default-btn > .naver-img{
+  background-image:url("res/ic_login_naver.png");
+  background-size:cover;
+  width:13px;
+  height:11px;
+}
+
+@media (max-width:639px){
+  .content > .content-box{
+    width:90%;
+    height:75%;
+
+    box-shadow:2px 2px 5px 5px rgb(234,234,234);
+    border-radius:40px;
+
+    margin-bottom:100px;
+  }
+
+  .content > .content-box > .content-content > .input-box{
+    width:80%;
+    height:9%;
+
+    border-radius:50px;
+    border:2px solid rgb(86,188,166);
+
+    margin:auto;
+
+    margin-top:15px;
+  }
+
+  .header > .header-box > .auth-box{
+    width:50%;
+    height:100%;
+
+    .flex-align-between;
+  }
+
+  .content > .content-box > .content-content > .btn{
+    width:80%;
+    height:9%;
+
+    background-color:rgb(86,188,166);
+    border-radius:50px;
+
+    .flex-center;
+
+    color:#fff;
+    font-size:18px;
+    font-weight:400;
+
+    margin:auto;
+    margin-top:20px;
+  }
+
+  .content > .content-box > .content-content > .default-list{
+    .flex-align-between;
+    width:80%;
+    height:12%;
+
+    margin:auto;
+    margin-top:10px;
+  }
+
+  .content > .content-box > .content-content > .default-text{
+    .flex-center;
+    width:80%;
+    height:6%;
+    margin:auto;
+    margin-top:15px;
+  }
+
+  .content > .content-box > .content-content > .default-text > p{
+    font-size:10px;
+    width:100%;
+    color:rgba(0,0,0,0.3);
+    text-align:center;
+  }
+}
+
+@media (min-width:640px){
+  .content > .content-box{
+    width:50%;
+    height:75%;
+
+    box-shadow:2px 2px 5px 5px rgb(234,234,234);
+    border-radius:40px;
+
+    margin-bottom:100px;
+  }
+
+  .content > .content-box > .content-content > .input-box{
+    width:60%;
+    height:9%;
+
+    border-radius:50px;
+    border:2px solid rgb(86,188,166);
+
+    margin:auto;
+
+    margin-top:15px;
+  }
+
+  .header > .header-box > .auth-box{
+    width:20%;
+    height:100%;
+
+    .flex-align-between;
+  }
+
+  .content > .content-box > .content-content > .btn{
+    width:60%;
+    height:9%;
+
+    background-color:rgb(86,188,166);
+    border-radius:50px;
+
+    .flex-center;
+
+    color:#fff;
+    font-size:18px;
+    font-weight:400;
+
+    margin:auto;
+    margin-top:20px;
+  }
+
+  .content > .content-box > .content-content > .default-list{
+    .flex-align-between;
+    width:60%;
+    height:12%;
+
+    margin:auto;
+    margin-top:10px;
+  }
+
+  .content > .content-box > .content-content > .default-text{
+    .flex-center;
+    width:60%;
+    height:6%;
+    margin:auto;
+    margin-top:15px;
+  }
+
+  .content > .content-box > .content-content > .default-text > p{
+    font-size:10px;
+    width:100%;
+    color:rgba(0,0,0,0.3);
+    text-align:center;
+  }
+}

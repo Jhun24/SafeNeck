@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SafeNeck</title>
+
+    <meta name="viewport" content="initial-scale=1, width=device-width, user-scalable=0"/>
+
+    <link href='https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css"/>
+
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link rel="shortcut icon" href="css/favicon.png" type="image/x-icon">
+    <link rel="icon" href="css/favicon.png" type="image/x-icon">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SafeNeck">
+    <meta property="og:description" content="당신을 위한 자세교정 솔루션 SafeNeck">
+    <meta property="og:image" content="resource/bg_mockup.png">
+
+    <script src="https://use.fontawesome.com/10ffd9cc1b.js"></script>
+
+    <link rel="stylesheet/less" href="css/daily.less">
+    <link rel="stylesheet/less" href="css/main.less">
+    <link rel="stylesheet/less" href="css/popup.less">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.js" type="text/javascript"></script>
+
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+
+</head>
+<body>
+    <div class="setting-popup">
+        <div class="setting-popup-box">
+            <div class="setting-header">
+                <div class="setting-header-content">
+                    <h4>설정</h4>
+                    <div class="setting-btn-box">
+                        <div class="setting-agree">완료하기</div>
+                        <div class="setting-cancel">취소하기</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-content">
+                <div class="setting-title">
+                    <h6>리포트 시간 설정</h6>
+                    <p>데일리 리포트 시간을 설정합니다</p>
+                </div>
+
+                <div class="setting-box">
+                    <div class="now-setting">
+                        <h4>현재 설정</h4>
+                        <p>11 : 34</p>
+                    </div>
+                    <div class="change-btn">변경</div>
+                </div>
+            </div>
+
+            <div class="setting-content">
+                <div class="setting-title">
+                    <h6>자세 경고 알림 설정</h6>
+                    <p>자세 경고에 대한 알림 옵션을 설정합니다</p>
+                </div>
+
+                <div class="setting-box">
+                    <div class="now-setting">
+                        <h4>현재 설정</h4>
+                        <p>6초</p>
+                    </div>
+                    <div class="change-btn">변경</div>
+                </div>
+            </div>
+
+            <div class="setting-content">
+                <div class="setting-title">
+                    <h6>진동 설정</h6>
+                    <p>진동의 On/Off 옵션을 설정합니다</p>
+                </div>
+
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <div class="setting-content">
+                <div class="setting-title">
+                    <h6>진동 시간 설정</h6>
+                    <p>진동이 울릴 시간을 설정합니다 ( 1 ~ 10초 )</p>
+                </div>
+
+                <div class="setting-box">
+                    <div class="now-setting">
+                        <h4>현재 설정</h4>
+                        <p>6초</p>
+                    </div>
+                    <div class="change-btn">변경</div>
+                </div>
+            </div>
+
+            <div class="setting-content">
+                <div class="setting-title">
+                    <h6>하루 목표 알림 개수 설정</h6>
+                    <p>하루 자세 경고 알림에 대한 목표 개수를 설정합니다 ( 최대 100개 )</p>
+                </div>
+
+                <div class="setting-box">
+                    <div class="now-setting">
+                        <h4>현재 설정</h4>
+                        <p>15회</p>
+                    </div>
+                    <div class="change-btn">변경</div>
+                </div>
+            </div>
+
+            <div class="setting-content">
+                <div class="setting-title">
+                    <h6>주간 목표 알림 개수 설정</h6>
+                    <p>주간 자세 경고 알림에 대한 목표 개수를 설정합니다 ( 최대 700개 )</p>
+                </div>
+
+                <div class="setting-box">
+                    <div class="now-setting">
+                        <h4>현재 설정</h4>
+                        <p>60회</p>
+                    </div>
+                    <div class="change-btn">변경</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="header-box">
+            <div class="logo">
+            </div>
+
+            <div class="list-box">
+                <div class="btn main click">메인</div>
+                <div class="btn daily unclick">데일리 리포트</div>
+                <div class="btn setting unclick">설정</div>
+                <div class="btn logout unclick">로그아웃</div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+
+        <div class="user-content">
+            <div class="user-content-box">
+                <div class="user-change-content">
+                    <div class="user-change-icon-content">
+                        <div class="user-change-icon-header">
+                            <div class="user-change-icon-text-box">
+                                <h6>사용자님의 상태 변화</h6>
+
+                                <p>3일간의 상태 변화입니다</p>
+                            </div>
+                        </div>
+                        <div class="user-change-img-content">
+                            <div class="user-change-img">
+                                <div class="user-change-img-box">
+                                    <div class="user-change-img-good"></div>
+                                    <h3 class="text-good">좋음</h3>
+                                    <p>현재 상태</p>
+                                </div>
+                            </div>
+                            <p><</p>
+                            <div class="user-change-img">
+                                <div class="user-change-img-box">
+                                    <div class="user-change-img-sogood"></div>
+                                    <h3 class="text-sogood">매우 좋음</h3>
+                                    <p>1일전 상태</p>
+                                </div>
+                            </div>
+                            <p><</p>
+                            <div class="user-change-img">
+                                <div class="user-change-img-box">
+                                    <div class="user-change-img-bad"></div>
+                                    <h3 class="text-bad">나쁨</h3>
+                                    <p>2일전 상태</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-change-comment">
+                        <div class="icon"></div>
+                        <div class="user-change-comment-text-box">
+                            <h6>사용자님의 상태변화에 대한 코멘트</h6>
+                            <p>캬 사용자님의 자세에 부랄을 탁 치고갑니다~</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-graph-content">
+                    <div class="user-graph-box">
+                        <div class="user-graph-box-header">
+                            <div class="user-graph-box-text-box">
+                                <h6>사용자님의 상태 변화 리포트</h6>
+                                <p>사용자님의 사용 시간 상태 리포트입니다</p>
+                            </div>
+                        </div>
+                        <div class="user-graph-box-content">
+                            <div id="user-chart"></div>
+                        </div>
+                    </div>
+                    <div class="user-graph-text">
+                        <div class="user-graph-text-box">
+                            <div class="user-graph-text-content">
+                                <h6 class="graph-text-sogood">매우 좋음</h6>
+                                <p class="graph-text-sogood-text"></p>
+                            </div>
+
+                            <div class="user-graph-text-content">
+                                <h6 class="graph-text-good">좋음</h6>
+                                <p class="graph-text-good-text"></p>
+                            </div>
+
+                            <div class="user-graph-text-content">
+                                <h6 class="graph-text-normal">보통</h6>
+                                <p class="graph-text-normal-text"></p>
+                            </div>
+
+                            <div class="user-graph-text-content">
+                                <h6 class="graph-text-bad">나쁨</h6>
+                                <p class="graph-text-bad-text"></p>
+                            </div>
+
+                            <div class="user-graph-text-content">
+                                <h6 class="graph-text-sobad">매우 나쁨</h6>
+                                <p class="graph-text-sobad-text"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="daily-contents none">
+            <div class="report-box">
+                <div class="report-top">
+                    <div class="report-content-box">
+                        <div class="report-header daily-header">
+                            <div class="text-box">
+                                <h3>오늘 받은 알림 개수</h3>
+                                <p>오늘 하루동안 받은 알림 개수입니다</p>
+                            </div>
+                        </div>
+                        <div class="report-user-num daily-report-user-num">
+                            <h1 class="daily-user-num">12</h1>
+                            <p>회</p>
+                        </div>
+                        <div class="report-explain-text">
+                            <p>일간 알림 개수 목표치는 15회입니다</p>
+                        </div>
+                    </div>
+                    <div class="report-content-box">
+                        <div class="report-header weekly-header">
+                            <div class="text-box">
+                                <h3>주간 받은 알림 개수</h3>
+                                <p>한 주 하루동안 받은 알림 개수입니다</p>
+                            </div>
+                        </div>
+
+                        <div class="report-user-num weekly-report-user-num">
+                            <h1 class="daily-user-num">12</h1>
+                            <p>회</p>
+                        </div>
+                        <div class="report-explain-text">
+                            <p>주간 알림 개수 목표치는 15회입니다</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="report-bottom">
+                    <div class="report-bottom-content">
+                        <div class="report-calender">
+                            <div class="calender-control">
+                                <p class="left"><</p>
+                                <h6>2017년 8월 4일</h6>
+                                <p class="right">></p>
+                            </div>
+
+                            <div class="calender-btn click">일간</div>
+
+                            <div class="calender-btn unclick">주간</div>
+
+                            <div class="calender-btn unclick">월간</div>
+                        </div>
+                        <div class="report-graph">
+                            <div class="graph-list">
+                                <div class="graph-content"></div>
+                                <div class="graph-content"></div>
+                                <div class="graph-content"></div>
+                                <div class="graph-content"></div>
+                                <div class="graph-content"></div>
+                                <div class="graph-content"></div>
+                            </div>
+                            <div class="graph-text">
+                                <p>14시</p>
+                                <p>16시</p>
+                                <p>17시</p>
+                                <p>18시</p>
+                                <p>19시</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="change-content">
+            <h2>사용자님의 상태 변화</h2>
+
+            <div class="change-list-box">
+                <div class="change-header">
+                    <p>2017.08.04 - 12:40</p>
+                </div>
+
+                <div class="change-content">
+                    <div class="good"></div>
+                    <p>매우 좋음</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/chart.js"></script>
+</body>
+</html>

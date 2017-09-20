@@ -1,0 +1,211 @@
+.flex(){
+    display:flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+}
+
+.flex-center(){
+    display:flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+
+    align-items:center;
+    -ms-flex-align:center;
+    -webkit-align-items:center;
+
+    -ms-flex-pack:center;
+    justify-content:center;
+    -webkit-justify-content:center;
+}
+
+.flex-align-center() {
+    display: flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+
+    align-items: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+}
+
+.flex-align-end() {
+    display:flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+
+    align-items:center;
+    -ms-flex-align:center;
+    -webkit-align-items:center;
+
+    -ms-flex-pack:end;
+    justify-content:flex-end;
+    -webkit-justify-content:flex-end;
+}
+
+.flex-align-between() {
+    display:flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+
+    align-items:center;
+    -ms-flex-align:center;
+    -webkit-align-items:center;
+
+    -ms-flex-pack:justify;
+    justify-content:space-between;
+    -webkit-justify-content:space-between;
+}
+
+.flex-align-start() {
+    display:flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+
+    align-items:center;
+    -ms-flex-align:center;
+    -webkit-align-items:center;
+
+    -ms-flex-pack:start;
+    justify-content:start;
+    -webkit-justify-content:flex-start;
+}
+
+.flex-align-around() {
+    display:flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+
+    align-items:center;
+    -ms-flex-align:center;
+    -webkit-align-items:center;
+
+    -ms-flex-pack:justify;
+    justify-content:space-around;
+    -webkit-justify-content:space-around;
+}
+
+.flex-bottom-around() {
+    display:flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+
+    align-items:flex-end;
+    -ms-flex-align:end;
+    -webkit-align-items:flex-end;
+
+    -ms-flex-pack:justify;
+    justify-content:space-around;
+    -webkit-justify-content:space-around;
+}
+
+
+*{
+    margin:0;
+    font-family: 'Nanum Barun Gothic', sans-serif;
+}
+
+// 86 188 166
+
+body{
+    width:100vw;
+    height:100vh;
+}
+
+.header{
+    width:100%;
+    height:8%;
+
+    background-color:rgb(86,188,166);
+
+    .flex-center;
+}
+
+.header > .header-box{
+    width:90%;
+    height:100%;
+    margin:auto;
+
+    .flex-align-between;
+}
+
+.header > .header-box > .logo{
+    background-image:url('res/ic_logo.png');
+    background-size:cover;
+    width:128.5px;
+    height:22px;
+}
+
+.header > .header-box > .auth-box{
+    width:20%;
+    height:100%;
+
+    .flex-align-between;
+}
+
+.header > .header-box > .auth-box > .btn{
+    width:45%;
+    height:60%;
+
+    -webkit-border-radius:50px;
+    -moz-border-radius:50px;
+    border-radius:50px;
+
+    .flex-center;
+
+    cursor:pointer;
+
+    color:#fff;
+}
+
+.content{
+    width:100%;
+    height:92%;
+
+    .flex-center;
+}
+
+.content > .content-box{
+    width:54%;
+    height:60%;
+
+    box-shadow:2px 2px 5px 5px rgb(234,234,234);
+    border-radius:20px;
+
+}
+
+.content > .content-box > .content-box-header{
+    width:100%;
+    height:24%;
+
+    background-color: rgb(66,82,88);
+    border-radius:20px 20px 0 0;
+
+    .flex-center;
+}
+
+.content > .content-box > .content-box-header > .content-box-header-content{
+    width:90%;
+    height:60%;
+
+    margin:auto;
+
+    .flex-align-between;
+}
+
+.content > .content-box > .content-box-header > .content-box-header-content > h6{
+    color:white;
+    font-size:28px;
+    font-weight:400;
+}
+
+.content > .content-box > .content-box-header > .content-box-header-content > .btn{
+    width:20%;
+    height:60%;
+
+    .flex-center;
+
+    color:rgb(66,82,88);
+    background-color:#fff;
+
+    border-radius: 30px;
+}

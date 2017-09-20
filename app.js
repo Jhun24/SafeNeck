@@ -9,7 +9,9 @@ var mongoose = require('mongoose');
 var randomstring = require('randomstring');
 var NaverStrategy = require('passport-naver').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var GoogleStrategy = require('passport-google').Strategy;
 var passport = require('passport');
+var session = require('express-session');
 
 var app = express();
 
@@ -26,6 +28,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+    secret:'@#@$MYSIGN#@$#$',
+    resave: false,
+    saveUninitialized:true
+}));
 
 passport.serializeUser(function(user, done) {
     done(null, user);
@@ -65,6 +73,17 @@ passport.use(new FacebookStrategy({
     }
 ));
 
+passport.use(new GoogleStrategy({
+        returnURL: 'http://localhost:3000/auth/google/return',
+        realm: 'http://localhost:3000/'
+    },
+    function(identifier, done) {
+        User.findByOpenID({ openId: identifier }, function (err, user) {
+            return done(err, user);
+        });
+    }
+));
+
 mongoose.connect('mongodb://localhost:27017/no') ;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -99,9 +118,10 @@ var userModel = mongoose.model('userModel',user);
 var alarmModel = mongoose.model('alarmModel',alarm);
 var settingModel = mongoose.model('settingModel',setting);
 
-require('./routes/auth')(app,randomstring,userModel,NaverStrategy,passport);
+require('./routes/auth')(app,randomstring,userModel,passport,session);
 require('./routes/alarm')(app,alarmModel,userModel)
 require('./routes/setting')(app,userModel,settingModel);
+require('./routes/route')(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
