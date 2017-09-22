@@ -194,7 +194,74 @@
     status : 404
     
     message : user not found
+
     
+### : POST /alarm/checkDailyAward
+    
+> require
+    
+    token : 유저 토큰
+
+> response : success
+
+    status : 200
+    
+    result : true == 목표량 넘김
+    
+    result : false == 목표랑 안넘김
+           
+> response : fail
+
+    status : 404
+    
+    message : user not found
+
+> response : fail
+
+    status : 404
+    
+    message : please initialize your setting
+
+> response : fail
+
+    status : 404
+    
+    message : no data for user neck
+
+### : POST /alarm/checkWeeklyAward
+    
+> require
+    
+    token : 유저 토큰
+
+> response : success
+
+    status : 200
+    
+    result : true == 목표량 넘김
+    
+    result : false == 목표랑 안넘김
+           
+> response : fail
+
+    status : 404
+    
+    message : user not found
+
+> response : fail
+
+    status : 404
+    
+    message : please initialize your setting
+
+> response : fail
+
+    status : 404
+    
+    message : no data for user neck
+
+
+
 > 구현중    
 
 # setting
