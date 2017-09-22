@@ -24,6 +24,7 @@ function alarm(app,alarmModel,userModel){
                             token:token,
                             todayAlarm:"1",
                             monthAlarm:"1",
+                            weekAlarm:"1"
                         });
 
                         saveAlarmModel.save((err,mo)=>{
@@ -37,8 +38,9 @@ function alarm(app,alarmModel,userModel){
                     else{
                         var dailyAdd = m[0]["todayAlarm"] + 1;
                         var monthAdd = m[0]["monthAlarm"] + 1;
+                        var weekAdd = m[0]["weekAlarm"] + 1;
 
-                        alarmModel.update({"token":token},{$set:{"todayAlarm":dailyAdd,"monthAlarm":monthAdd}},(err,mo)=>{
+                        alarmModel.update({"token":token},{$set:{"todayAlarm":dailyAdd,"monthAlarm":monthAdd,"weekAlarm":weekAdd}},(err,mo)=>{
                             if(err) throw err;
                             res.send({
                                 "status":200,

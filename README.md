@@ -32,6 +32,42 @@
 
 >   유저 토큰을 의미합니다
 
+### alarm Schema
+
+    token : String
+    
+>   유저 토큰을 의미합니다
+
+    todayAlarm : String
+    
+>   일일 알람을 의미합니다
+ 
+    weekAlarm : String
+    
+>   주간 알람을 의미합니다
+
+    monthAlarm : String
+
+>   월간 알림을 의미합니다
+
+### setting Schema
+ 
+    token : String
+    
+>   유저 토큰을 의미합니다
+
+    reportTime : String
+
+>   리포트를 보낼 시간을 의미합니다
+
+    dailyAward : String
+
+>   하루 동안 자세 경고 알림 목표 개수를 의미합니다
+
+    weeklyAward : String
+
+>   주간 자세 경고 알림 목표 개수를 의미합니다
+
 # /auth
 
 ### : POST /auth/login
@@ -86,7 +122,7 @@
     
     age : 유저 나이
     
-    sex : 유저 성별햣
+    sex : 유저 성별
     
     work : 유저 직업
     
@@ -102,3 +138,160 @@
     
     message : user not found
     
+### : GET /auth/getToken
+
+> require
+    
+    없음
+    
+> response : success
+
+    status : 200
+    
+    token : 유저 토큰
+
+> response : fail
+
+    status : 404
+    
+    message : token undefinded
+
+# /alram
+
+### : GET /alarm/add/daily
+
+> require
+    
+    token : 유저 토큰
+    
+> response : success
+
+    status : 200
+    
+    data : alarm Schema 참조
+    
+> response : fail
+
+    status : 404
+    
+    message : user not found
+
+
+### : GET /alarm/getData
+
+> require
+    
+    token : 유저 토큰
+    
+> response : success
+    
+    status : 200
+    
+    data : alarm Schema 참조
+    
+> response : fail
+
+    status : 404
+    
+    message : user not found
+    
+> 구현중    
+
+# setting
+
+### : POST /setting/reportTime
+
+> require
+
+    token : 유저 토큰
+    
+    time : 업데이트할 리포트 알림 시간
+
+> response : success
+ 
+    status : 200
+    
+    data : setting model 참고
+    
+> response : fail
+
+    status : 404
+    
+    message : user not found
+
+> response : fail
+
+    status : 400
+    
+    message : user token undefinded
+
+### : POST /setting/dailyAward
+
+> require
+
+    token : 유저 토큰
+    
+    dailyAward : 업데이트할 하루 동안 자세 경고 알림 목표 개수
+
+> response : success
+ 
+    status : 200
+    
+    data : setting model 참고
+    
+> response : fail
+
+    status : 404
+    
+    message : user not found
+
+> response : fail
+
+    status : 400
+    
+    message : user token undefinded
+
+### : POST /setting/weeklyAward
+
+> require
+
+    token : 유저 토큰
+    
+    weeklyAward : 업데이트할 주간 자세 경고 알림 목표 개수
+
+> response : success
+ 
+    status : 200
+    
+    data : setting model 참고
+    
+> response : fail
+
+    status : 404
+    
+    message : user not found
+
+> response : fail
+
+    status : 400
+    
+    message : user token undefinded
+
+
+### : GET /setting/list
+
+> require
+
+    token : 유저 토큰
+
+> response : success
+ 
+    status : 200
+    
+    data : setting model 참고
+    
+> response : fail
+
+    status : 404
+    
+    message : user not found

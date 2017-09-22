@@ -24,7 +24,7 @@ function setting(app , userModel , settingModel){
                     if(model.length == 0){
                         res.send({
                             "status":400,
-                            "message":"user token not definded"
+                            "message":"user token undefinded"
                         });
                     }
                     else{
