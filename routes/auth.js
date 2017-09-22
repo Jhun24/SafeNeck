@@ -70,7 +70,7 @@ function auth(app , randomstring , userModel  , passport ,session){
         var sex = req.body.sex;
         var work = req.body.work;
 
-        model.find({"token":token},(err,model)=>{
+        userModel.find({"token":token},(err,model)=>{
             if(err) throw err;
             if(model.length == 0){
                 res.send({
@@ -79,7 +79,7 @@ function auth(app , randomstring , userModel  , passport ,session){
                 });
             }
             else{
-                model.update({"token":token},{$set:{"age":age,"sex":sex,"work":work}},(error,m)=>{
+                userModel.update({"token":token},{$set:{"age":age,"sex":sex,"work":work}},(error,m)=>{
                     if(error) throw error;
                     res.send({
                         "status":200
