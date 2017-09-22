@@ -115,14 +115,28 @@ var setting = mongoose.Schema({
     weeklyAward:String
 });
 
+var userNeck = mongoose.Schema({
+    token:String,
+    neckSlope:String
+});
+
+var neck = mongoose.Schema({
+    token:String,
+    neckSlope:String
+});
+
 
 var userModel = mongoose.model('userModel',user);
 var alarmModel = mongoose.model('alarmModel',alarm);
 var settingModel = mongoose.model('settingModel',setting);
+var userNeckModel = mongoose.model('userNeckModel',userNeck);
+var neckModel = mongoose.model('neckModel',neck);
 
 require('./routes/auth')(app,randomstring,userModel,passport,session);
 require('./routes/alarm')(app,alarmModel,userModel)
 require('./routes/setting')(app,userModel,settingModel);
+require('./routes/neck')(app , userNeckModel , neckModel);
+
 require('./routes/route')(app);
 
 // catch 404 and forward to error handler
