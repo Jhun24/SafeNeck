@@ -133,9 +133,10 @@ var userNeckModel = mongoose.model('userNeckModel',userNeck);
 var neckModel = mongoose.model('neckModel',neck);
 
 require('./routes/auth')(app,randomstring,userModel,passport,session);
-require('./routes/alarm')(app,alarmModel,userModel)
+require('./routes/alarm')(app,alarmModel,userModel , settingModel)
 require('./routes/setting')(app,userModel,settingModel);
-require('./routes/neck')(app , userNeckModel , neckModel);
+require('./routes/neck')(app , userModel ,userNeckModel , neckModel);
+require('./routes/neck')(app , userModel ,userNeckModel , neckModel);
 
 require('./routes/route')(app);
 

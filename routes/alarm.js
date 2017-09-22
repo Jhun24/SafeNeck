@@ -3,7 +3,7 @@
  */
 module.exports = alarm;
 
-function alarm(app,alarmModel,userModel){
+function alarm(app,alarmModel,userModel,settingModel){
     "use strict";
     app.get('/alarm/add/daily',(req,res)=>{
         var token = req.query.token;
@@ -73,5 +73,128 @@ function alarm(app,alarmModel,userModel){
             }
         });
     });
+
+    app.post('/alarm/checkDailyAward',(req,res)=>{
+        var token = req.body.token;
+
+        userModel.find({"token":token},(err,model)=>{
+            if(err) throw err;
+
+            if(model.length == 0){
+                res.send({
+                    "status":404,
+                    "message":"user not found"
+                });
+            }
+            else{
+                settingModel.find({"token":token},(err,m)=>{
+                    if(err) throw err;
+
+                    if(m.length == 0){
+                        res.send({
+                            "status":404,
+                            "message":"please initialize your setting"
+                        });
+                    }
+                    else{
+                        alarmModel.find({"token":token},(err,mo)=>{
+                            if(err) throw err;
+
+                            if(mo.length == 0){
+                                res.send({
+                                    "status":404,
+                                    "message":"no data for user neck"
+                                });
+                            }
+                            else{
+                                var userAlarm = mo[0]["todayAlarm"];
+                                var userAward = m[0]["dailyAward"];
+
+                                if(userAlarm > userAward){
+                                    res.send({
+                                        "status":200,
+                                        "result":true
+                                    });
+
+                                    // 넘김
+                                }
+                                else{
+                                    res.send({
+                                        "status":200,
+                                        "result":false
+                                    });
+
+                                    // 안넘김
+                                }
+
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+
+    app.post('/alarm/checkWeeklyAward',(req,res)=>{
+        var token = req.body.token;
+
+        userModel.find({"token":token},(err,model)=>{
+            if(err) throw err;
+
+            if(model.length == 0){
+                res.send({
+                    "status":404,
+                    "message":"user not found"
+                });
+            }
+            else{
+                settingModel.find({"token":token},(err,m)=>{
+                    if(err) throw err;
+
+                    if(m.length == 0){
+                        res.send({
+                            "status":404,
+                            "message":"please initialize your setting"
+                        });
+                    }
+                    else{
+                        alarmModel.find({"token":token},(err,mo)=>{
+                            if(err) throw err;
+
+                            if(mo.length == 0){
+                                res.send({
+                                    "status":404,
+                                    "message":"no data for user neck"
+                                });
+                            }
+                            else{
+                                var userAlarm = mo[0]["weekAlarm"];
+                                var userAward = m[0]["weeklyAward"];
+
+                                if(userAlarm > userAward){
+                                    res.send({
+                                        "status":200,
+                                        "result":true
+                                    });
+
+                                    // 넘김
+                                }
+                                else{
+                                    res.send({
+                                        "status":200,
+                                        "result":false
+                                    });
+
+                                    // 안넘김
+                                }
+
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    });
+
 
 }
