@@ -10,6 +10,7 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
         var slope = req.query.slope;
         var alarmModelData = new Array();
 
+
         userModel.find({"token":token},(err,model)=>{
             if(err) throw err;
             if(model.length == 0){
@@ -31,7 +32,7 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
 
                         saveAlarmModel.save((err,mo)=>{
                             if(err) throw err;
-                            alarmModelData = mo[0];
+                            alarmModelData[0] = mo[0];
                         });
                     }
                     else{
@@ -41,7 +42,7 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
 
                         alarmModel.update({"token":token},{$set:{"todayAlarm":dailyAdd,"monthAlarm":monthAdd,"weekAlarm":weekAdd}},(err,mo)=>{
                             if(err) throw err;
-                            alarmModelData = mo;
+                            alarmModelData[1] = mo;
                         });
                     }
                 });
