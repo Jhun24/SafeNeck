@@ -3,10 +3,12 @@
  */
 module.exports = alarm;
 
-function alarm(app,alarmModel,userModel,settingModel){
+function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
     "use strict";
     app.get('/alarm/add/daily',(req,res)=>{
         var token = req.query.token;
+        var slope = req.query.slope;
+        var alarmModelData;
 
         userModel.find({"token":token},(err,model)=>{
             if(err) throw err;
@@ -29,10 +31,7 @@ function alarm(app,alarmModel,userModel,settingModel){
 
                         saveAlarmModel.save((err,mo)=>{
                             if(err) throw err;
-                            res.send({
-                                "status":200,
-                                "data":mo
-                            });
+                            alarmModelData = mo[0];
                         });
                     }
                     else{
@@ -42,14 +41,42 @@ function alarm(app,alarmModel,userModel,settingModel){
 
                         alarmModel.update({"token":token},{$set:{"todayAlarm":dailyAdd,"monthAlarm":monthAdd,"weekAlarm":weekAdd}},(err,mo)=>{
                             if(err) throw err;
-                            res.send({
-                                "status":200,
-                                "data":mo
-                            });
+                            alarmModelData = mo;
                         });
                     }
                 });
             }
+
+            userAlarmModel.find({"token":token},(err,model)=>{
+                if(err) throw err;
+
+                var d = new Date();
+
+                var month = d.getMonth();
+                var date = d.getDate();
+
+                var hour = d.getHours();
+
+                var saveDate = month+":"+date;
+
+                var saveUserAlarmModel = new userAlarmModel({
+                    "token":token,
+                    "date":saveDate,
+                    "slope":slope,
+                    "time":hour
+                });
+
+                saveUserAlarmModel.save((err,model)=>{
+                    if(err) throw err;
+
+                    alarmModelData[1] = model[0];
+
+                    res.send({
+                        "status":200,
+                        "data":alarmModelData
+                    });
+                });
+            });
         });
     });
 
@@ -195,6 +222,4 @@ function alarm(app,alarmModel,userModel,settingModel){
             }
         });
     });
-
-
 }

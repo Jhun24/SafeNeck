@@ -108,6 +108,13 @@ var alarm = mongoose.Schema({
     weekAlarm:String
 });
 
+var userAlarm = mongoose.Schema({
+    token:String,
+    time:String,
+    date:String,
+    slope:String
+});
+
 var setting = mongoose.Schema({
     token:String,
     reportTime:String,
@@ -131,11 +138,12 @@ var alarmModel = mongoose.model('alarmModel',alarm);
 var settingModel = mongoose.model('settingModel',setting);
 var userNeckModel = mongoose.model('userNeckModel',userNeck);
 var neckModel = mongoose.model('neckModel',neck);
+var userAlarmModel = mongoose.model('userAlarmModel',userAlarm)
 
 require('./routes/auth')(app,randomstring,userModel,passport,session);
-require('./routes/alarm')(app,alarmModel,userModel , settingModel)
+require('./routes/alarm')(app,alarmModel,userModel , settingModel , userAlarmModel)
 require('./routes/setting')(app,userModel,settingModel);
-require('./routes/neck')(app , userModel ,userNeckModel , neckModel);
+require('./routes/neck')(app , userModel ,userNeckModel , neckModel , userAlarmModel);
 require('./routes/neck')(app , userModel ,userNeckModel , neckModel);
 
 require('./routes/route')(app);

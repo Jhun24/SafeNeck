@@ -68,6 +68,24 @@
 
 >   주간 자세 경고 알림 목표 개수를 의미합니다
 
+### userAlarm Schema
+
+    token : String
+
+>   유저 토큰을 의미합니다
+
+    date : String
+
+>   기울기가 저장된 날짜를 의미합니다
+
+    time : String
+
+>   기울기가 저장된 시간을 의미합니다
+
+    slope : String
+
+>   사용자의 목 기울기를 의미합니다
+
 # /auth
 
 ### : POST /auth/login
@@ -164,11 +182,15 @@
     
     token : 유저 토큰
     
+    slope : 유저 목 기울긴
+    
 > response : success
 
     status : 200
     
-    data : alarm Schema 참조
+    data[0] : alarm Schema 참조
+    
+    data[1] : userAlarm Schema 참조
     
 > response : fail
 
@@ -362,3 +384,6 @@
     status : 404
     
     message : user not found
+
+
+
