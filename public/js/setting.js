@@ -53,7 +53,7 @@ $(".start").click(function () {
         data:{"token":token,"age":age,"work":work,"sex":sex},
         success:function (data) {
             if(data["status"] == 200){
-
+                location.href="/main"
             }
             else if(data["status"] == 404){
                 alert("서버 오류");
