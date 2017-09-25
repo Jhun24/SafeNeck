@@ -8,7 +8,7 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
     app.get('/alarm/add/daily',(req,res)=>{
         var token = req.query.token;
         var slope = req.query.slope;
-        var alarmModelData = new Array()z;
+        var alarmModelData = new Array();
 
         userModel.find({"token":token},(err,model)=>{
             if(err) throw err;
