@@ -281,10 +281,7 @@
     status : 404
     
     message : no data for user neck
-
-
-
-> 구현중    
+ 
 
 # setting
 
@@ -385,5 +382,91 @@
     
     message : user not found
 
+# neck
 
+### : POST /neck/checkToday
 
+> require
+
+    token : 유저 토큰
+    
+> response
+
+    stauts : 200
+    
+    data : return arr
+    
+    returnArray[0 ~ 23]
+    배열의 인자값은 시간을 의미
+    
+    아무런 데이터가 없으면 : none
+    
+    정상인 경우 : 정상
+    주의인 경우 : 주의
+    경고인 경우 : 경고
+    나쁨인 경우 : 나쁨
+    매우 나쁨은 경우 : 매우 나쁨
+    
+> response : fail
+
+    status : 404
+    
+    message : user not found
+
+> response : fail
+
+    status : 404
+    
+    message : user neck data not found
+
+### : POST /neck/checkDay
+
+> require
+
+    token : 유저 토큰
+    
+> response
+
+    stauts : 200
+    
+    today : 오늘 자세 평가
+    
+    아무런 데이터가 없으면 : none
+        
+    정상인 경우 : 정상
+    주의인 경우 : 주의
+    경고인 경우 : 경고
+    나쁨인 경우 : 나쁨
+    매우 나쁨은 경우 : 매우 나쁨
+    
+    yesterday : 어제 자세 평가
+        
+    아무런 데이터가 없으면 : none
+        
+    정상인 경우 : 정상
+    주의인 경우 : 주의
+    경고인 경우 : 경고
+    나쁨인 경우 : 나쁨
+    매우 나쁨은 경우 : 매우 나쁨
+    
+    doubleday : 2일전 자세 평가
+        
+    아무런 데이터가 없으면 : none
+        
+    정상인 경우 : 정상
+    주의인 경우 : 주의
+    경고인 경우 : 경고
+    나쁨인 경우 : 나쁨
+    매우 나쁨은 경우 : 매우 나쁨
+    
+> response : fail
+
+    status : 404
+    
+    message : user not found
+
+> response : fail
+
+    status : 404
+    
+    message : user neck data not found

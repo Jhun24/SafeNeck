@@ -259,6 +259,9 @@ function neck(app , userModel , userNeckModel , neckModel , userAlarmModel){
                         else if(data >= 1750){
                             return1 = "매우 나쁨"
                         }
+                        else{
+                            return1 = "none"
+                        }
 
                         if(resultYesterday > 2100){
                             return2 = "정상"
@@ -275,6 +278,10 @@ function neck(app , userModel , userNeckModel , neckModel , userAlarmModel){
                         else if(resultYesterday >= 1750){
                             return2 = "매우 나쁨"
                         }
+                        else{
+                            return2 = "none"
+                        }
+
 
                         if(resultYesterYesterday > 2100){
                             return3 = "정상"
@@ -291,6 +298,10 @@ function neck(app , userModel , userNeckModel , neckModel , userAlarmModel){
                         else if(resultYesterYesterday >= 1750){
                             return3 = "매우 나쁨"
                         }
+                        else{
+                            return3 = "none"
+                        }
+
                     }
 
                     res.send({
