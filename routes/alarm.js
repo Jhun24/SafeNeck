@@ -14,6 +14,7 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
         userModel.find({"token":token},(err,model)=>{
             if(err) throw err;
             if(model.length == 0){
+                console.log(model);
                 res.send({
                     "status":404,
                     "message":"user not found"
