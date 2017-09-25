@@ -470,3 +470,28 @@
     status : 404
     
     message : user neck data not found
+
+### : GET /neck/list
+
+> require
+    
+    token : 유저 토큰
+    
+> response
+
+    status : 200
+    
+    data : 유저 목 모델 ( userAlarmModel 참조 )
+
+
+> response : fail
+
+    status : 404
+    
+    message : user not found
+
+> response : fail
+
+    status : 404
+    
+    message : user alarm data not found

@@ -315,7 +315,37 @@ function neck(app , userModel , userNeckModel , neckModel , userAlarmModel){
         });
     });
 
+    app.get('/neck/list',(req,res)=>{
+        var token = req.query.token;
 
+        userModel.find({"token":token},(err,model)=>{
+            if(err) throw err;
+
+            if(model.length == 0){
+                res.send({
+                    "status":404,
+                    "message":"user not found"
+                });
+            }
+            else{
+                userAlarmModel.find({"token":token},(err,model)=>{
+                    if(err) throw err;
+                    if(model.length == 0){
+                        res.send({
+                            "status":404,
+                            "message":"user alarm data not found"
+                        });
+                    }
+                    else{
+                        res.send({
+                            "status":200,
+                            "data":model
+                        });
+                    }
+                });
+            }
+        });
+    });
 
     app.post("/neck/testNeckData",(req,res)=>{
         var neckSlope = req.body.neckSlope;
