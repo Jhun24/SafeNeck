@@ -12,6 +12,9 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
         var slope = req.query.slope;
         var alarmModelData = new Array();
 
+        alarmModelData[0] = new Array();
+        alarmModelData[1] = new Array();
+
 
         userModel.find({"token":token},(err,model)=>{
             if(err) throw err;
