@@ -90,7 +90,7 @@ function setting(app , userModel , settingModel){
                     if(err) throw err;
                     if(model.length == 0){
                         res.send({
-                            "status":400,
+                            "status":404,
                             "message":"user token not definded"
                         });
                     }
@@ -108,7 +108,7 @@ function setting(app , userModel , settingModel){
     app.get('/setting/list',(req,res)=>{
         var token = req.query.token;
 
-        settingModel.find({"token":token},(err,model)=>{
+        userModel.find({"token":token},(err,model)=>{
             if(err) throw err;
             if(model.length == 0){
                 res.send({
@@ -117,9 +117,33 @@ function setting(app , userModel , settingModel){
                 });
             }
             else{
-                res.send({
-                    "status":200,
-                    "data":model
+                settingModel.find({"token":token},(err,model)=>{
+                    if(err) throw err;
+                    if(model.length == 0){
+                        var saveSettingModel = new settingModel({
+                            "time":"22",
+                            "weeklyAward":"140",
+                            "dailyAward":"20"
+                        });
+
+                        saveSettingModel.save((err,m)=>{
+                            if(err) throw err;
+                            res.send({
+                                "status":200,
+                                "data":{
+                                    "time":"22",
+                                    "weeklyAward":"140",
+                                    "dailyAward":"20"
+                                }
+                            });
+                        });
+                    }
+                    else{
+                        res.send({
+                            "status":200,
+                            "data":model
+                        });
+                    }
                 });
             }
         });

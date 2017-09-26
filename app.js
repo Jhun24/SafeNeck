@@ -112,7 +112,9 @@ var userAlarm = mongoose.Schema({
     token:String,
     time:String,
     date:String,
-    slope:Number
+    middleSlope:Number,
+    rightSlope:Number,
+    leftSlope:Number
 });
 
 var setting = mongoose.Schema({
