@@ -54,18 +54,23 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
                         }
                     }
                     else{
-                        var saveAlarmModel = new alarmModel({
-                            token:token,
-                            todayAlarm:0,
-                            monthAlarm:0,
-                            weekAlarm:0
-                        });
+                        if(m.length == 0){
+                            var saveAlarmModel = new alarmModel({
+                                token:token,
+                                todayAlarm:1,
+                                monthAlarm:1,
+                                weekAlarm:1
+                            });
 
-                        saveAlarmModel.save((err,mo)=>{
-                            if(err) throw err;
-                        });
-                        console.log(m[0]);
-                        alarmModelData[0] = m[0];
+                            saveAlarmModel.save((err,mo)=>{
+                                if(err) throw err;
+                                alarmModelData[0] = m[0];
+                            });
+                        }
+                        else{
+                            console.log(m[0]);
+                            alarmModelData[0] = m[0];
+                        }
                     }
                 });
 
