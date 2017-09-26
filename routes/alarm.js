@@ -49,9 +49,13 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
 
                             alarmModel.update({"token":token},{$set:{"todayAlarm":dailyAdd,"monthAlarm":monthAdd,"weekAlarm":weekAdd}},(err,mo)=>{
                                 if(err) throw err;
-                                alarmModelData[1] = mo;
+                                alarmModelData[0] = mo[0];
                             });
                         }
+                    }
+                    else{
+                        console.log(m[0]);
+                        alarmModelData[0] = m[0];
                     }
                 });
 
