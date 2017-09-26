@@ -103,16 +103,16 @@ var user = mongoose.Schema({
 
 var alarm = mongoose.Schema({
     token:String,
-    todayAlarm:String,
-    monthAlarm:String,
-    weekAlarm:String
+    todayAlarm:Number,
+    monthAlarm:Number,
+    weekAlarm:Number
 });
 
 var userAlarm = mongoose.Schema({
     token:String,
     time:String,
     date:String,
-    slope:String
+    slope:Number
 });
 
 var setting = mongoose.Schema({

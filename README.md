@@ -38,15 +38,15 @@
     
 >   유저 토큰을 의미합니다
 
-    todayAlarm : String
+    todayAlarm : Number
     
 >   일일 알람을 의미합니다
  
-    weekAlarm : String
+    weekAlarm : Number
     
 >   주간 알람을 의미합니다
 
-    monthAlarm : String
+    monthAlarm : Number
 
 >   월간 알림을 의미합니다
 

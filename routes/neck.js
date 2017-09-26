@@ -84,7 +84,7 @@ function neck(app , userModel , userNeckModel , neckModel , userAlarmModel){
                                 var inputHour = model[i]["time"] - 1;
                                 var slope = model[i]["slope"];
                                 hour[inputHour] += slope;
-                                hourLength[i]++;
+                                hourLength[i]+=1;
                             }
 
                         }
@@ -95,6 +95,7 @@ function neck(app , userModel , userNeckModel , neckModel , userAlarmModel){
                                 returnArr[i] = "none";
                             }
                             else{
+                                console.log(hour[i] +" : "+hourLength);
                                 var data = hour[i]/hourLength[i];
                                 if(data > 2100){
                                     returnArr[i] = "정상"
@@ -250,13 +251,13 @@ function neck(app , userModel , userNeckModel , neckModel , userAlarmModel){
                         else if(resultToday >= 2050){
                             return1 = "주의"
                         }
-                        else if(data >= 2000){
+                        else if(resultToday >= 2000){
                             return1 = "경고"
                         }
-                        else if(data >= 1900){
+                        else if(resultToday >= 1900){
                             return1 = "나쁨"
                         }
-                        else if(data >= 1750){
+                        else if(resultToday >= 1750){
                             return1 = "매우 나쁨"
                         }
                         else{
