@@ -39,7 +39,7 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
 
                             saveAlarmModel.save((err,mo)=>{
                                 if(err) throw err;
-                                alarmModelData[0] = mo[0];
+                                alarmModelData[0] = m[0];
                             });
                         }
                         else{
@@ -49,7 +49,7 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
 
                             alarmModel.update({"token":token},{$set:{"todayAlarm":dailyAdd,"monthAlarm":monthAdd,"weekAlarm":weekAdd}},(err,mo)=>{
                                 if(err) throw err;
-                                alarmModelData[0] = mo[0];
+                                alarmModelData[0] = m[0];
                             });
                         }
                     }
@@ -88,7 +88,7 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
                         "time":hour
                     });
 
-                    saveUserAlarmModel.save((err,model)=>{
+                    saveUserAlarmModel.save((err,mo)=>{
                         if(err) throw err;
 
                         alarmModelData[1] = model[0];
