@@ -175,6 +175,33 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
         });
     });
 
+    app.get('/alarm/graph',(req,res)=>{
+        var token = req.query.token;
+
+        userModel.find({"token":token},(err,model)=>{
+            if(err) throw err;
+
+            if(model.length == 0){
+                res.send({
+                    "status":404,
+                    "message":"user not found"
+                });
+            }
+            else{
+                userAlarmModel.find({"token":token},(err,model)=>{
+                    if(err) throw err;
+
+                    var d = new Date();
+                    var month = d.getMonth();
+                    var userMonthArr = new Array();
+                    var userDateArr = new Array();
+
+
+                });
+            }
+        });
+    });
+
     app.post('/alarm/checkWeeklyAward',(req,res)=>{
         var token = req.body.token;
 
