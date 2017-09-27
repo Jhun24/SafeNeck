@@ -603,7 +603,6 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
 
     function reset(){
         var d = new Date();
-
         var hour = d.getHours();
         var sec = d.getSeconds();
         var day = d.getDay();

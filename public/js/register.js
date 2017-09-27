@@ -20,23 +20,27 @@ $(".btn-register").click(function(){
     if(ps == psCheck){
         var name = $(".name").val();
         var id = $(".id").val();
-
-        $.ajax({
-            method:"POST",
-            data:{"id":id,"password":ps,"name":name},
-            url:"/auth/register",
-            success:function (data) {
-                if(data["status"] == 200){
-                    location.href="/setting"
+        if(name != "" && id != "" && ps != ""){
+            $.ajax({
+                method:"POST",
+                data:{"id":id,"password":ps,"name":name},
+                url:"/auth/register",
+                success:function (data) {
+                    if(data["status"] == 200){
+                        location.href="/setting"
+                    }
+                    else if(data["status"] == 403){
+                        alert("이미 존재하는 아이디입니다");
+                    }
+                },
+                error:function (err) {
+                    console.log(err);
                 }
-                else if(data["status"] == 403){
-                    alert("이미 존재하는 아이디입니다");
-                }
-            },
-            error:function (err) {
-                console.log(err);
-            }
-        });
+            });
+        }
+        else{
+            alert("정확히 입력해주세요");
+        }
     }
     else{
         alert("비밀번호가 일치하지 않습니다");
