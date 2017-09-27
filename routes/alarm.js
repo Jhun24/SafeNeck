@@ -233,21 +233,6 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
                             var checkToday = month+":"+date;
 
                             if(model[0]["date"] == checkToday) {
-                                if(model[0]["middleSlope"] > 2100){
-                                    todayArr["정상"]++;
-                                }
-                                else if(model[0]["middleSlope"] > 2000){
-                                    todayArr["주의"]++;
-                                }
-                                else if(model[0]["middleSlope"] > 1900){
-                                    todayArr["경고"]++;
-                                }
-                                else if(model[0]["middleSlope"] > 1800){
-                                    todayArr["나뿜"]++;
-                                }
-                                else if(model[0]["middleSlope"] > 1750){
-                                    todayArr["매우 나쁨"]++;
-                                }
 
 
                                 if(model[0]["middleSlope"] > 2100){
@@ -477,11 +462,12 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
                         }
                     }
 
-                    var checkDate = date+":"+day;
+                    var checkDate = month+":"+date;
 
                     for(var i = 0; i<model.length; i++){
-                        if(model[i]["date"] == checkDate ){
+                        if(model[i]["date"] == checkDate){
                             var inputTime = model[i]["time"];
+                            console.log("Input Time start" + inputTime);
                             if(model[i]["middleSlope"] < 2100){
                                 todayAlarm[inputTime] += 1;
                             }
@@ -494,8 +480,8 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
                         }
 
                         if(model[i]["date"].indexOf(month) != -1){
-                            var inputDate = model[i]["date"].replace(month+":");
-
+                            var inputDate = model[i]["date"].replace(month+":","");
+                            console.log(inputDate);
                             if(model[i]["middleSlope"] < 2100){
                                 monthAlarm[inputDate] += 1;
                             }
