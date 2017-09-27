@@ -8,10 +8,6 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
     app.get('/alarm/add/daily',(req,res)=>{
         var token = req.query.token;
 
-        var alarmModelData = new Array();
-        alarmModelData[0] = new Array();
-
-
         userModel.find({"token":token},(err,model)=>{
             if(err) throw err;
             if(model.length == 0){
@@ -35,7 +31,6 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
 
                         saveAlarmModel.save((err,mo)=>{
                             if(err) throw err;
-                            alarmModelData = m[0];
                         });
                     }
                     else{
@@ -45,13 +40,14 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
 
                         alarmModel.update({"token":token},{$set:{"todayAlarm":dailyAdd,"monthAlarm":monthAdd,"weekAlarm":weekAdd}},(err,mo)=>{
                             if(err) throw err;
-                            alarmModelData = m[0];
                         });
                     }
 
+                    console.log(m);
+
                     res.send({
                         "status":200,
-                        "data":alarmModelData
+                        "data":m
                     });
                 });
             }
@@ -88,8 +84,8 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
 
             saveUserAlarmModel.save((err,mo)=>{
                 if(err) throw err;
-
-
+                console.log(mo);
+                model[model.length] = mo;
                 res.send({
                     "status":200,
                     "data":model
@@ -217,7 +213,9 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
                         todayArr["나쁨"] = 0;
                         todayArr["매우 나쁨"] = 0;
 
+                        console.log(todayArr);
 
+                        console.log(model[0]);
                         for(var i = 0; i < model.length; i++){
                             var checkToday = month+":"+date;
 
@@ -335,6 +333,8 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
                     var weekAlarm = new Array();
                     var monthAlarm = new Array();
 
+                    var weekCheckArr = new Arrray();
+
                     for(var i = 0; i<24; i++){
                         if(i<7){
                             weekAlarm[i] = 0;
@@ -373,6 +373,14 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
                             else{
                                 minDate = 30 + minDate;
                             }
+
+                            var forMinDate = minDate * -1;
+                            for(var i = 0; i<forMinDate; i++){
+                                weekCheckArr[weekCheckArr.length] = minDate + i;
+                            }
+                            for(var i = 1; i<maxDate; i++){
+                                weekCheckArr[weekCheckArr.length] = i;
+                            }
                         }
                         else{
                             if(minMonth %2 == 1){
@@ -381,39 +389,140 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
                             else{
                                 minDate = 31 + minDate;
                             }
+
+                            var forMinDate = minDate * -1;
+                            for(var i = 0; i<forMinDate; i++){
+                                weekCheckArr[weekCheckArr.length] = minDate + i;
+                            }
+                            for(var i = 1; i<maxDate; i++){
+                                weekCheckArr[weekCheckArr.length] = i;
+                            }
                         }
                     }
+                    else if(maxDate - minDate == 7){
+                        var forMinDate = minDate;
 
-                    if(maxMonth+1 < 8){
-                        if(maxMonth + 1 %2 == 1){
-                            if(maxDate > 31){
-                                maxMonth += 1;
-                                maxDate = 1+maxDate;
-                            }
-                        }
-                        else{
-                            if(maxDate > 30){
-                                maxMonth += 1;
-                                maxDate = 1+maxDate;
-                            }
+                        for(var i = 0; i<7; i++){
+                            weekCheckArr[i] = forMinDate;
+                            forMinDate+=1;
                         }
                     }
                     else{
-                        if(maxMonth + 1 %2 == 1){
-                            if(maxDate > 30){
-                                maxMonth += 1;
-                                maxDate = 1+maxDate;
+                        if(maxMonth+1 < 8){
+                            if(maxMonth + 1 %2 == 1){
+                                if(maxDate > 31){
+                                    maxMonth += 1;
+                                    maxDate = maxDate - 31;
+                                }
+                            }
+                            else{
+                                if(maxDate > 30){
+                                    maxMonth += 1;
+                                    maxDate = maxDate - 30;
+                                }
+                            }
+
+                            var checkMindate = minDate;
+
+                            for(var i = 0 ; i < 7 - maxDate; i++ ){
+                                weekCheckArr[i] = minDate;
+                                minDate += 1;
+                            }
+                            var check = 1;
+                            for(var i = 7 - maxDate; i<7; i++){
+                                weekCheckArr[i] = check;
+
+                                check += 1;
                             }
                         }
                         else{
-                            if(maxDate > 31){
-                                maxMonth += 1;
-                                maxDate = 1+maxDate;
+                            if(maxMonth + 1 %2 == 1){
+                                if(maxDate > 30){
+                                    maxMonth += 1;
+                                    maxDate = maxDate - 30;
+                                }
+                            }
+                            else{
+                                if(maxDate > 31){
+                                    maxMonth += 1;
+                                    maxDate = maxDate - 31;
+                                }
+                            }
+
+                            var checkMindate = minDate;
+
+                            for(var i = 0 ; i < 7 - maxDate; i++ ){
+                                weekCheckArr[i] = minDate;
+                                minDate += 1;
+                            }
+                            var check = 1;
+                            for(var i = 7 - maxDate; i<7; i++){
+                                weekCheckArr[i] = check;
+
+                                check += 1;
                             }
                         }
                     }
 
+                    var checkDate = date+":"+day;
 
+                    for(var i = 0; i<model.length; i++){
+                        if(model[i]["date"] == checkDate ){
+                            var inputTime = model[i]["time"];
+                            if(model[i]["middleSlope"] < 2100){
+                                todayAlarm[inputTime] += 1;
+                            }
+                            else if(model[i]["leftSlope"] > 1550){
+                                todayAlarm[inputTime] += 1;
+                            }
+                            else if(model[i]["rightSlope"] > 1550){
+                                todayAlarm[inputTime] += 1;
+                            }
+                        }
+
+                        if(model[i]["date"].indexOf(month) != -1){
+                            var inputDate = model[i]["date"].replace(month+":");
+
+                            if(model[i]["middleSlope"] < 2100){
+                                monthAlarm[inputDate] += 1;
+                            }
+                            else if(model[i]["leftSlope"] > 1550){
+                                monthAlarm[inputDate] += 1;
+                            }
+                            else if(model[i]["rightSlope"] > 1550){
+                                monthAlarm[inputDate] += 1;
+                            }
+                        }
+
+                        var weekCheckMonth = minMonth;
+
+                        for(var e = 0; e<7; e++){
+
+                            var weekCheckInputMonth = weekCheckMonth+":"+weekCheckArr[e];
+
+                            if(model[i]["date"] == weekCheckInputMonth){
+                                if(model[i]["middleSlope"] < 2100){
+                                    weekAlarm[e] += 1;
+                                }
+                                else if(model[i]["leftSlope"] > 1550){
+                                    weekAlarm[e] += 1;
+                                }
+                                else if(model[i]["rightSlope"] > 1550){
+                                    weekAlarm[e] += 1;
+                                }
+                            }
+
+                            if((e != 6 && weekCheckArr[e] == 31) || (e != 6 && weekCheckArr[e] == 30 && weekCheckArr[e+1] == 1)){
+                                weekCheckMonth = maxMonth;
+                            }
+                        }
+                    }
+                    res.send({
+                        "status":200,
+                        "today":todayAlarm,
+                        "week":weekAlarm,
+                        "month":monthAlarm
+                    })
                 });
             }
         });
