@@ -599,15 +599,36 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
                 });
             }
         });
-
-
-        function reset(){
-            var d = new Date();
-
-            var hour = d.getHours();
-            var sec = d.getSeconds();
-            var day = d.getDay();
-            var date = d.getDate();
-        }
     });
+
+    function reset(){
+        var d = new Date();
+
+        var hour = d.getHours();
+        var sec = d.getSeconds();
+        var day = d.getDay();
+        var date = d.getDate();
+        var min = d.getMinutes();
+
+        if(date == 1 && hour == 0 && min == 0 && sec == 0){
+            alarmModel.update({},{$set:{"monthAlarm":0}},(err,model)=>{
+                if(err) throw err;
+                console.log("User AlarmModel [monthAlarm] Reset Success");
+            });
+        }
+        else if(day == 0 & hour == 0 && min == 0 && sec == 0){
+            alarmModel.update({},{$set:{"weekAlarm":0}},(err,model)=>{
+                if(err) throw err;
+                console.log("User AlarmModel [weekAlarm] Reset Success");
+            });
+        }
+        else if(hour == 0 && min == 0 && sec == 0){
+            alarmModel.update({},{$set:{"todayAlarm":0}},(err,model)=>{
+                if(err) throw err;
+                console.log("User AlarmModel [todayAlarm] Reset Success");
+            });
+        }
+    }
+
+    setInterval(reset,1000);
 }
