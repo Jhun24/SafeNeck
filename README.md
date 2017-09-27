@@ -182,15 +182,11 @@
     
     token : 유저 토큰
     
-    slope : 유저 목 기울긴
-    
 > response : success
 
     status : 200
     
-    data[0] : alarm Schema 참조
-    
-    data[1] : userAlarm Schema 참조
+    data : alarm Schema 참조
     
 > response : fail
 
@@ -217,21 +213,53 @@
     
     message : user not found
 
-    
-### : POST /alarm/checkDailyAward
+### : GET /alarm/saveUserNeck
     
 > require
-    
-    token : 유저 토큰
 
-> response : success
+    token : 유저 토큰
+    
+    middleSlope : 목 중간 기울기
+    
+    leftSlope : 목 왼쪽 기울기
+    
+    rightSlope : 목 오른쪽 기울기
+    
+> response : success 
 
     status : 200
     
-    result : true == 목표량 넘김
+    data : userAlarm Schema 참조
     
-    result : false == 목표랑 안넘김
-           
+> response : fail
+
+    status : 404
+    
+    message : user not found
+    
+### : GET /alarm/circleGraph
+
+> require
+
+    token : 유저 토큰
+
+> response
+
+    status : 200
+    
+    data : todayArray
+    
+    todayArray["정상"] = Number
+    
+    todayArray["주의"] = Number
+    
+    todayArray["경고"] = Number
+    
+    todayArray["나쁨"] = Number
+    
+    todayArray["매우 나쁨"] = Number
+    
+
 > response : fail
 
     status : 404
@@ -242,46 +270,37 @@
 
     status : 404
     
-    message : please initialize your setting
+    message : no data in user neck data
 
-> response : fail
+### : GET /alarm/barGraph
 
-    status : 404
-    
-    message : no data for user neck
-
-### : POST /alarm/checkWeeklyAward
-    
 > require
     
     token : 유저 토큰
-
+    
 > response : success
-
+    
     status : 200
     
-    result : true == 목표량 넘김
+    today : Array
     
-    result : false == 목표랑 안넘김
-           
+    today[0~23] : 시간별 값 
+    
+    today[0] = 1시를 의미
+    
+    week : Array
+    
+    week[0~6] : 일별 값 
+    
+    week[0] = 이번주의 첫날을 의미
+    
+    month : Array
+    
+    month[0~30 or 0~29]
+    
+    month[0] = 이번달의 1일을 의미
+    
 > response : fail
-
-    status : 404
-    
-    message : user not found
-
-> response : fail
-
-    status : 404
-    
-    message : please initialize your setting
-
-> response : fail
-
-    status : 404
-    
-    message : no data for user neck
- 
 
 # setting
 

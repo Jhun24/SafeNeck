@@ -60,38 +60,50 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
         var middleSlope = req.query.middleSlope;
         var leftSlope = req.query.leftSlope;
         var rightSlope = req.query.rightSlope;
-
-        userAlarmModel.find({"token":token},(err,model)=>{
+        userModel.find({"token":token},(err,model)=>{
             if(err) throw err;
 
-            var d = new Date();
-
-            var month = d.getMonth();
-            var date = d.getDate();
-
-            var hour = d.getHours();
-
-            var saveDate = month+":"+date;
-
-            var saveUserAlarmModel = new userAlarmModel({
-                "token":token,
-                "date":saveDate,
-                "middleSlope":middleSlope,
-                "leftSlope":leftSlope,
-                "rightSlope":rightSlope,
-                "time":hour
-            });
-
-            saveUserAlarmModel.save((err,mo)=>{
-                if(err) throw err;
-                console.log(mo);
-                model[model.length] = mo;
+            if(model.length == 0){
                 res.send({
-                    "status":200,
-                    "data":model
+                    "status":404,
+                    "message":"user not found"
                 });
-            });
+            }
+            else{
+                userAlarmModel.find({"token":token},(err,model)=>{
+                    if(err) throw err;
+
+                    var d = new Date();
+
+                    var month = d.getMonth();
+                    var date = d.getDate();
+
+                    var hour = d.getHours();
+
+                    var saveDate = month+":"+date;
+
+                    var saveUserAlarmModel = new userAlarmModel({
+                        "token":token,
+                        "date":saveDate,
+                        "middleSlope":middleSlope,
+                        "leftSlope":leftSlope,
+                        "rightSlope":rightSlope,
+                        "time":hour
+                    });
+
+                    saveUserAlarmModel.save((err,mo)=>{
+                        if(err) throw err;
+                        console.log(mo);
+                        model[model.length] = mo;
+                        res.send({
+                            "status":200,
+                            "data":model
+                        });
+                    });
+                });
+            }
         });
+
     });
 
     app.get('/alarm/getData',(req,res)=>{
@@ -184,7 +196,7 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
 
             if(model.length == 0){
                 res.send({
-                    "status":200,
+                    "status":404,
                     "message":"user not found"
                 });
             }
