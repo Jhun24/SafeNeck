@@ -61,6 +61,8 @@ function setting(app , userModel , settingModel){
                         });
                     }
                     else{
+                        console.log(model);
+                        console.log(dailyAward);
                         res.send({
                             "status":200,
                             "data":model
@@ -121,6 +123,7 @@ function setting(app , userModel , settingModel){
                     if(err) throw err;
                     if(model.length == 0){
                         var saveSettingModel = new settingModel({
+                            "token":token,
                             "time":"22",
                             "weeklyAward":"140",
                             "dailyAward":"20"
@@ -131,6 +134,7 @@ function setting(app , userModel , settingModel){
                             res.send({
                                 "status":200,
                                 "data":{
+                                    "token":token,
                                     "time":"22",
                                     "weeklyAward":"140",
                                     "dailyAward":"20"

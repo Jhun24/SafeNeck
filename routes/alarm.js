@@ -219,12 +219,13 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
 
                         var todayArr = new Array();
 
-                        todayArr["정상"] = 0;
-                        todayArr["주의"] = 0;
-                        todayArr["경고"] = 0;
-                        todayArr["나쁨"] = 0;
-                        todayArr["매우 나쁨"] = 0;
-
+                        todayArr = {
+                            "정상":0,
+                            "주의":0,
+                            "경고":0,
+                            "나쁨":0,
+                            "매우 나쁨":0
+                        };
                         console.log(todayArr);
 
                         console.log(model[0]);
@@ -233,73 +234,73 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
 
                             if(model[0]["date"] == checkToday) {
                                 if(model[0]["middleSlope"] > 2100){
-                                    todayArr["정상"]+=1;
+                                    todayArr["정상"]++;
                                 }
                                 else if(model[0]["middleSlope"] > 2000){
-                                    todayArr["주의"]+=1;
+                                    todayArr["주의"]++;
                                 }
                                 else if(model[0]["middleSlope"] > 1900){
-                                    todayArr["경고"]+=1;
+                                    todayArr["경고"]++;
                                 }
                                 else if(model[0]["middleSlope"] > 1800){
-                                    todayArr["나뿜"]+=1;
+                                    todayArr["나뿜"]++;
                                 }
                                 else if(model[0]["middleSlope"] > 1750){
-                                    todayArr["매우 나쁨"]+=1;
+                                    todayArr["매우 나쁨"]++;
                                 }
 
 
                                 if(model[0]["middleSlope"] > 2100){
-                                    todayArr["정상"]+=1;
+                                    todayArr["정상"]++;
                                 }
                                 else if(model[0]["middleSlope"] > 2000){
-                                    todayArr["주의"]+=1;
+                                    todayArr["주의"]++;
                                 }
                                 else if(model[0]["middleSlope"] > 1900){
-                                    todayArr["경고"]+=1;
+                                    todayArr["경고"]++;
                                 }
                                 else if(model[0]["middleSlope"] > 1800){
-                                    todayArr["나뿜"]+=1;
+                                    todayArr["나뿜"]++;
                                 }
                                 else if(model[0]["middleSlope"] > 1750){
-                                    todayArr["매우 나쁨"]+=1;
+                                    todayArr["매우 나쁨"]++;
                                 }
 
 
                                 if(model[0]["leftSlope"] < 1550){
-                                    todayArr["정상"]+=1;
+                                    todayArr["정상"]++;
                                 }
                                 else if(model[0]["leftSlope"] < 1650){
-                                    todayArr["주의"]+=1;
+                                    todayArr["주의"]++;
                                 }
                                 else if(model[0]["leftSlope"] < 1850){
-                                    todayArr["경고"]+=1;
+                                    todayArr["경고"]++;
                                 }
                                 else if(model[0]["leftSlope"] < 2050){
-                                    todayArr["나뿜"]+=1;
+                                    todayArr["나뿜"]++;
                                 }
                                 else{
-                                    todayArr["매우 나쁨"]+=1;
+                                    todayArr["매우 나쁨"]++;
                                 }
 
                                 if(model[0]["rightSlope"] < 1550){
-                                    todayArr["정상"]+=1;
+                                    todayArr["정상"]++;
                                 }
                                 else if(model[0]["rightSlope"] < 1650){
-                                    todayArr["주의"]+=1;
+                                    todayArr["주의"]++;
                                 }
                                 else if(model[0]["rightSlope"] < 1850){
-                                    todayArr["경고"]+=1;
+                                    todayArr["경고"]++;
                                 }
                                 else if(model[0]["rightSlope"] < 2050){
-                                    todayArr["나뿜"]+=1;
+                                    todayArr["나뿜"]++;
                                 }
                                 else{
-                                    todayArr["매우 나쁨"]+=1;
+                                    todayArr["매우 나쁨"]++;
                                 }
                             }
                         }
-
+                        console.log(todayArr);
                         res.send({
                             "status":200,
                             "data":todayArr
