@@ -82,7 +82,9 @@ function neck(app , userModel , userNeckModel , neckModel , userAlarmModel){
 
                             if(check == inputDate){
                                 var inputHour = model[i]["time"] - 1;
-                                var slope = model[i]["slope"];
+                                var middle = model[i]["middleSlope"];
+                                var left = model[i]["leftSlope"];
+                                var right = model[i]["rightSlope"];
                                 hour[inputHour] += slope;
                                 hourLength[i]+=1;
                             }
@@ -149,168 +151,180 @@ function neck(app , userModel , userNeckModel , neckModel , userAlarmModel){
                             "message":"user neck data not found"
                         });
                     }
-                    else{
+                    else {
+
+                        var return1;
+                        var return2;
+                        var return3;
+
                         var d = new Date();
-
-                        var todayData = 0;
-                        var yesterdayData = 0;
-                        var yesteryesterdayData = 0;
-
-                        var todayDataLength = 0;
-                        var yesterdayDataLength = 0;
-                        var yesteryesterdayDataLength = 0;
-
                         var date = d.getDate();
+
+                        var oneday = 0;
+                        var twoday = 0;
+
                         var month = d.getMonth();
 
-                        var date1 = d.getMonth()+":"+d.getDate();
-                        var date2 = "";
-                        var date3 = "";
+                        var oneMonth = month;
+                        var twoMonth = month;
 
-                        var return1 = "";
-                        var return2 = "";
-                        var return3 = "";
+                        var firstCheckArr = new Array();
 
-                        if(d.getDate() - 1 < 1){
-                            if(month < 8){
-                                if(month%2 == 1){
-                                    var inputMonth = month - 1;
-                                    var inputDate = 31;
+                        firstCheckArr[0] = 0;
+                        firstCheckArr[1] = 0;
+                        firstCheckArr[2] = 0;
+                        firstCheckArr[3] = 0;
+                        firstCheckArr[4] = 0;
+
+                        var secCheckArr = new Array();
+
+                        secCheckArr[0] = 0;
+                        secCheckArr[1] = 0;
+                        secCheckArr[2] = 0;
+                        secCheckArr[3] = 0;
+                        secCheckArr[4] = 0;
+
+                        var thirdCheckArr = new Array();
+
+                        thirdCheckArr[0] = 0;
+                        thirdCheckArr[1] = 0;
+                        thirdCheckArr[2] = 0;
+                        thirdCheckArr[3] = 0;
+                        thirdCheckArr[4] = 0;
+
+                        if(date - 1 == 0){
+                            if(month - 1 < 8){
+                                if((month - 1)%2 == 1){
+                                    oneday = 31;
                                 }
                                 else{
-                                    var inputMonth = month - 1;
-                                    var inputDate = 30;
+                                    oneday = 30;
                                 }
-
-                                date2 = inputMonth+":"+inputDate;
                             }
                             else{
-                                if(month%2 == 1){
-                                    var inputMonth = month - 1;
-                                    var inputDate = 30;
+                                if((month - 1)%2 == 1){
+                                    oneday = 30;
                                 }
                                 else{
-                                    var inputMonth = month - 1;
-                                    var inputDate = 31;
+                                    oneday = 31;
                                 }
-
-                                date2 = inputMonth+":"+inputDate;
                             }
+                            oneMonth--;
+                        }
+                        else{
+                            oneday = date - 1;
                         }
 
-                        if(d.getDate() - 2 < 1){
-                            if(month < 8){
-                                if(month%2 == 1){
-                                    var inputMonth = month - 1;
-                                    var inputDate = 31;
+                        if(oneday - 1 == 0){
+                            if(month - 1 < 8){
+                                if((month - 1)%2 == 1){
+                                    twoday = 31;
                                 }
                                 else{
-                                    var inputMonth = month - 1;
-                                    var inputDate = 30;
+                                    twoday = 30;
                                 }
-
-                                date3 = inputMonth+":"+inputDate;
                             }
                             else{
-                                if(month%2 == 1){
-                                    var inputMonth = month - 1;
-                                    var inputDate = 30;
+                                if((month - 1)%2 == 1){
+                                    twoday = 30;
                                 }
                                 else{
-                                    var inputMonth = month - 1;
-                                    var inputDate = 31;
+                                    twoday = 31;
+                                }
+                            }
+                            twoMonth--;
+                        }
+                        else{
+                            twoday = date - 2;
+                        }
+
+                        userAlarmModel.find({"token":token},(err,model)=>{
+                            if(err) throw err;
+
+                            if(model.length == 0){
+                                res.send({
+                                    "status":404,
+                                    "message":"no data in user alarm"
+                                });
+                            }
+                            else{
+                                for(var i = 0; i<model.length; i++){
+                                    if(model[i]["date"] == month+":"+date){
+                                        var middle = model[i]["middleSlope"] - 1;
+                                        firstCheckArr[middle]++;
+                                        var left = model[i]["leftSlope"] - 1;
+                                        firstCheckArr[left]++;
+                                        var right = model[i]["rightSlope"] - 1;
+                                        firstCheckArr[right]++;
+                                    }
+                                    else if(model[i]["date"] == oneMonth+":"+oneday){
+                                        var middle = model[i]["middleSlope"] - 1;
+                                        secCheckArr[middle]++;
+                                        var left = model[i]["leftSlope"] - 1;
+                                        secCheckArr[left]++;
+                                        var right = model[i]["rightSlope"] - 1;
+                                        secCheckArr[right]++;
+                                    }
+                                    else if(model[i]["date"] == twoMonth+":"+twoday){
+                                        var middle = model[i]["middleSlope"] - 1;
+                                        thirdCheckArr[middle]++;
+                                        var left = model[i]["leftSlope"] - 1;
+                                        thirdCheckArr[left]++;
+                                        var right = model[i]["rightSlope"] - 1;
+                                        thirdCheckArr[right]++;
+                                    }
                                 }
 
-                                date3 = inputMonth+":"+inputDate;
+                                var frMax = 0;
+                                var secMax = 0;
+                                var thirdMax = 0;
+
+                                var frNum = 0;
+                                var secNum = 0;
+                                var thirdNum = 0;
+
+                                for(var i = 0; i<5; i++){
+                                    if(i == 0){
+                                        frMax = firstCheckArr[i];
+                                        secMax = secCheckArr[i];
+                                        thirdMax = thirdCheckArr[i];
+
+                                        frNum = i + 1;
+                                        secNum = i + 1;
+                                        thirdNum = i + 1;
+                                    }
+                                    else{
+                                        if(frMax < firstCheckArr[i]){
+                                            frMax = firstCheckArr[i];
+
+                                            frNum = i + 1;
+                                        }
+
+                                        if(secMax < secCheckArr[i]){
+                                            secMax = secCheckArr[i];
+
+                                            secNum = i + 1;
+                                        }
+
+                                        if(thirdMax < thirdCheckArr[i]){
+                                            thirdMax = thirdCheckArr[i];
+
+                                            thirdNum = i + 1;
+                                        }
+                                    }
+                                }
+
+                                res.send({
+                                    "status":200,
+                                    "today":frNum,
+                                    "yesterday":secNum,
+                                    "doubleday":thirdNum
+                                });
                             }
-                        }
 
-
-                        for(var i = 0; i<model.length; i++){
-                            if(model[i]["date"] == date1){
-                                todayData += model[i]["slope"];
-                                todayDataLength++;
-                            }
-                            else if(model[i]["date"] == date2){
-                                yesterdayData += model[i]["slope"];
-                                yesterdayDataLength++;
-                            }
-                            else if(model[i]["date"] == date3){
-                                yesteryesterdayData += model[i]["slope"];
-                                yesteryesterdayDataLength++;
-                            }
-                        }
-
-                        var resultToday = todayData/todayDataLength;
-                        var resultYesterday = yesterdayData/yesterdayDataLength;
-                        var resultYesterYesterday = yesteryesterdayData/yesteryesterdayDataLength;
-
-                        if(resultToday > 2100){
-                            return1 = "정상"
-                        }
-                        else if(resultToday >= 2050){
-                            return1 = "주의"
-                        }
-                        else if(resultToday >= 2000){
-                            return1 = "경고"
-                        }
-                        else if(resultToday >= 1900){
-                            return1 = "나쁨"
-                        }
-                        else if(resultToday >= 1750){
-                            return1 = "매우 나쁨"
-                        }
-                        else{
-                            return1 = "none"
-                        }
-
-                        if(resultYesterday > 2100){
-                            return2 = "정상"
-                        }
-                        else if(resultYesterday >= 2050){
-                            return2 = "주의"
-                        }
-                        else if(resultYesterday >= 2000){
-                            return2 = "경고"
-                        }
-                        else if(resultYesterday >= 1900){
-                            return2 = "나쁨"
-                        }
-                        else if(resultYesterday >= 1750){
-                            return2 = "매우 나쁨"
-                        }
-                        else{
-                            return2 = "none"
-                        }
-
-
-                        if(resultYesterYesterday > 2100){
-                            return3 = "정상"
-                        }
-                        else if(resultYesterYesterday >= 2050){
-                            return3 = "주의"
-                        }
-                        else if(resultYesterYesterday >= 2000){
-                            return3 = "경고"
-                        }
-                        else if(resultYesterYesterday >= 1900){
-                            return3 = "나쁨"
-                        }
-                        else if(resultYesterYesterday >= 1750){
-                            return3 = "매우 나쁨"
-                        }
-                        else{
-                            return3 = "none"
-                        }
+                        });
 
                     }
-
-                    res.send({
-                        "status":200,
-                        "today":return1,
-                        "yesterday":return2,
-                        "doubleday":return3
-                    });
                 });
             }
         });

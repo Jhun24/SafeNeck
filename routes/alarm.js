@@ -235,49 +235,49 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
                             if(model[0]["date"] == checkToday) {
 
 
-                                if(model[0]["middleSlope"] > 2100){
+                                if(model[0]["middleSlope"] == 1){
                                     todayArr["정상"]++;
                                 }
-                                else if(model[0]["middleSlope"] > 2000){
+                                else if(model[0]["middleSlope"] == 2){
                                     todayArr["주의"]++;
                                 }
-                                else if(model[0]["middleSlope"] > 1900){
+                                else if(model[0]["middleSlope"] == 3){
                                     todayArr["경고"]++;
                                 }
-                                else if(model[0]["middleSlope"] > 1800){
+                                else if(model[0]["middleSlope"] == 4){
                                     todayArr["나뿜"]++;
                                 }
-                                else if(model[0]["middleSlope"] > 1750){
+                                else if(model[0]["middleSlope"] == 5){
                                     todayArr["매우 나쁨"]++;
                                 }
 
 
-                                if(model[0]["leftSlope"] < 1550){
+                                if(model[0]["leftSlope"] == 1){
                                     todayArr["정상"]++;
                                 }
-                                else if(model[0]["leftSlope"] < 1650){
+                                else if(model[0]["leftSlope"] == 2){
                                     todayArr["주의"]++;
                                 }
-                                else if(model[0]["leftSlope"] < 1850){
+                                else if(model[0]["leftSlope"] == 3){
                                     todayArr["경고"]++;
                                 }
-                                else if(model[0]["leftSlope"] < 2050){
+                                else if(model[0]["leftSlope"] == 4){
                                     todayArr["나뿜"]++;
                                 }
                                 else{
                                     todayArr["매우 나쁨"]++;
                                 }
 
-                                if(model[0]["rightSlope"] < 1550){
+                                if(model[0]["rightSlope"] == 1){
                                     todayArr["정상"]++;
                                 }
-                                else if(model[0]["rightSlope"] < 1650){
+                                else if(model[0]["rightSlope"] == 2){
                                     todayArr["주의"]++;
                                 }
-                                else if(model[0]["rightSlope"] < 1850){
+                                else if(model[0]["rightSlope"] == 3){
                                     todayArr["경고"]++;
                                 }
-                                else if(model[0]["rightSlope"] < 2050){
+                                else if(model[0]["rightSlope"] == 4){
                                     todayArr["나뿜"]++;
                                 }
                                 else{
@@ -468,13 +468,13 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
                         if(model[i]["date"] == checkDate){
                             var inputTime = model[i]["time"];
                             console.log("Input Time start" + inputTime);
-                            if(model[i]["middleSlope"] < 2100){
+                            if(model[i]["middleSlope"] > 1){
                                 todayAlarm[inputTime] += 1;
                             }
-                            else if(model[i]["leftSlope"] > 1550){
+                            else if(model[i]["leftSlope"] > 1){
                                 todayAlarm[inputTime] += 1;
                             }
-                            else if(model[i]["rightSlope"] > 1550){
+                            else if(model[i]["rightSlope"] > 1){
                                 todayAlarm[inputTime] += 1;
                             }
                         }
@@ -482,13 +482,13 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
                         if(model[i]["date"].indexOf(month) != -1){
                             var inputDate = model[i]["date"].replace(month+":","");
                             console.log(inputDate);
-                            if(model[i]["middleSlope"] < 2100){
+                            if(model[i]["middleSlope"] > 1){
                                 monthAlarm[inputDate] += 1;
                             }
-                            else if(model[i]["leftSlope"] > 1550){
+                            else if(model[i]["leftSlope"] > 1){
                                 monthAlarm[inputDate] += 1;
                             }
-                            else if(model[i]["rightSlope"] > 1550){
+                            else if(model[i]["rightSlope"] > 1){
                                 monthAlarm[inputDate] += 1;
                             }
                         }
@@ -500,13 +500,13 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
                             var weekCheckInputMonth = weekCheckMonth+":"+weekCheckArr[e];
 
                             if(model[i]["date"] == weekCheckInputMonth){
-                                if(model[i]["middleSlope"] < 2100){
+                                if(model[i]["middleSlope"] > 1){
                                     weekAlarm[e] += 1;
                                 }
-                                else if(model[i]["leftSlope"] > 1550){
+                                else if(model[i]["leftSlope"] > 1){
                                     weekAlarm[e] += 1;
                                 }
-                                else if(model[i]["rightSlope"] > 1550){
+                                else if(model[i]["rightSlope"] > 1){
                                     weekAlarm[e] += 1;
                                 }
                             }
