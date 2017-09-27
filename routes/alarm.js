@@ -345,7 +345,7 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
                     var weekAlarm = new Array();
                     var monthAlarm = new Array();
 
-                    var weekCheckArr = new Arrray();
+                    var weekCheckArr = new Array();
 
                     for(var i = 0; i<24; i++){
                         if(i<7){
