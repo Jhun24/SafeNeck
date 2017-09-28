@@ -483,13 +483,13 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
                             var inputDate = model[i]["date"].replace(month+":","");
                             console.log(inputDate);
                             if(model[i]["middleSlope"] > 1){
-                                monthAlarm[inputDate] += 1;
+                                monthAlarm[inputDate - 1] += 1;
                             }
                             else if(model[i]["leftSlope"] > 1){
-                                monthAlarm[inputDate] += 1;
+                                monthAlarm[inputDate - 1] += 1;
                             }
                             else if(model[i]["rightSlope"] > 1){
-                                monthAlarm[inputDate] += 1;
+                                monthAlarm[inputDate - 1] += 1;
                             }
                         }
 
