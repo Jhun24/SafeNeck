@@ -19,7 +19,8 @@ $(".login-btn").click(function () {
         url:"/auth/login",
         data:{"id":id,"password":ps},
         success:function (data) {
-            var status = data[0]["status"];
+            console.log(data);
+            var status = data["status"];
 
             if(status == 404){
                 alert("존재하지 않는 아이디입니다");

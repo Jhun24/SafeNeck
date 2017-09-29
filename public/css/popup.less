@@ -102,8 +102,6 @@
   width:100%;
   height:100%;
 
-  .flex-center;
-
   position:absolute;
   z-index:999;
 
@@ -296,9 +294,17 @@ input:checked + .slider:before {
 }
 
 @media (max-width: 639px){
-
+  .setting-popup{
+    display:none;
+  }
 }
 
-@media (min-winth: 640px){
+@media (min-width: 640px){
+  .setting-popup{
+    .flex-center;
+  }
+}
 
+.none{
+  display:none;
 }
