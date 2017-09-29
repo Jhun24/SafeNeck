@@ -169,9 +169,9 @@ $(document).ready(function () {
                             result3+="<p>2일전 상태</p>"
                         }
 
-                        $(".day").html(result3);
-                        $(".day").html(result2);
                         $(".day").html(result1);
+                        $(".dayday").html(result2);
+                        $(".daydayday").html(result3);
                     },
                     error:function (err) {
                         console.log(err);
