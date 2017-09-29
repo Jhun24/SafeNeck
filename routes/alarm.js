@@ -84,7 +84,7 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
 
                     var saveUserAlarmModel = new userAlarmModel({
                         "token":token,
-                        "date":saveDate,
+                       "date":saveDate,
                         "middleSlope":middleSlope,
                         "leftSlope":leftSlope,
                         "rightSlope":rightSlope,
@@ -203,7 +203,7 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
             else{
                 userAlarmModel.find({"token":token},(err,model)=>{
                     if(err) throw err;
-
+		    console.log(model);
                     if(model.length == 0){
                         res.send({
                             "status":404,
@@ -211,6 +211,7 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
                         });
                     }
                     else{
+			console.log(model);
                         var d = new Date();
                         var day = d.getDay();
                         var date = d.getDate();
@@ -232,52 +233,52 @@ function alarm(app,alarmModel,userModel,settingModel,userAlarmModel){
                         for(var i = 0; i < model.length; i++){
                             var checkToday = month+":"+date;
 
-                            if(model[0]["date"] == checkToday) {
+                            if(model[i]["date"] == checkToday) {
 
 
-                                if(model[0]["middleSlope"] == 1){
+                                if(model[i]["middleSlope"] == 1){
                                     todayArr["fine"]++;
                                 }
-                                else if(model[0]["middleSlope"] == 2){
+                                else if(model[i]["middleSlope"] == 2){
                                     todayArr["caution"]++;
                                 }
-                                else if(model[0]["middleSlope"] == 3){
+                                else if(model[i]["middleSlope"] == 3){
                                     todayArr["warning"]++;
                                 }
-                                else if(model[0]["middleSlope"] == 4){
+                                else if(model[i]["middleSlope"] == 4){
                                     todayArr["bad"]++;
                                 }
-                                else if(model[0]["middleSlope"] == 5){
+                                else if(model[i]["middleSlope"] == 5){
                                     todayArr["verybad"]++;
                                 }
 
 
-                                if(model[0]["leftSlope"] == 1){
+                                if(model[i]["leftSlope"] == 1){
                                     todayArr["fine"]++;
                                 }
-                                else if(model[0]["leftSlope"] == 2){
+                                else if(model[i]["leftSlope"] == 2){
                                     todayArr["caution"]++;
                                 }
-                                else if(model[0]["leftSlope"] == 3){
+                                else if(model[i]["leftSlope"] == 3){
                                     todayArr["warning"]++;
                                 }
-                                else if(model[0]["leftSlope"] == 4){
+                                else if(model[i]["leftSlope"] == 4){
                                     todayArr["bad"]++;
                                 }
                                 else{
                                     todayArr["verybad"]++;
                                 }
 
-                                if(model[0]["rightSlope"] == 1){
+                                if(model[i]["rightSlope"] == 1){
                                     todayArr["fine"]++;
                                 }
-                                else if(model[0]["rightSlope"] == 2){
+                                else if(model[i]["rightSlope"] == 2){
                                     todayArr["caution"]++;
                                 }
-                                else if(model[0]["rightSlope"] == 3){
+                                else if(model[i]["rightSlope"] == 3){
                                     todayArr["warning"]++;
                                 }
-                                else if(model[0]["rightSlope"] == 4){
+                                else if(model[i]["rightSlope"] == 4){
                                     todayArr["bad"]++;
                                 }
                                 else{

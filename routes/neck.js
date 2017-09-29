@@ -37,7 +37,7 @@ function neck(app , userModel , userNeckModel , neckModel , userAlarmModel){
 
     app.get('/neck/checkToday',(req,res)=>{
         var token = req.query.token;
-
+	console.log(token);
         userModel.find({"token":token},(err,model)=>{
             if(err) throw err;
 
@@ -131,7 +131,7 @@ function neck(app , userModel , userNeckModel , neckModel , userAlarmModel){
 
     app.get('/neck/checkDay',(req,res)=>{
         var token = req.query.token;
-
+	console.log(token);
         userModel.find({"token":token},(err,model)=>{
             if(err) throw err;
 
